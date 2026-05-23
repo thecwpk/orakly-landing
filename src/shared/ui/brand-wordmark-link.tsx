@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { BRAND_LOGO_NAV, BRAND_GLYPH_SVG } from "@/shared/constants/brand-logos";
+import { BRAND_LOGO_NAV } from "@/shared/constants/brand-logos";
 import { ROUTES } from "@/shared/constants/routes";
 
 export type BrandWordmarkLinkProps = {
@@ -18,6 +18,27 @@ export type BrandWordmarkLinkProps = {
   onClick?: () => void;
   openInNewTab?: boolean;
 };
+
+/** Transparent mark for dark nav — no frame, SVG only. */
+function NavBrandMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden
+      className={cn("size-9 shrink-0 sm:size-10", className)}
+    >
+      <defs>
+        <linearGradient id="orakly-mark-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#f8fafc" />
+          <stop offset="1" stopColor="#38bdf8" />
+        </linearGradient>
+      </defs>
+      <circle cx="16" cy="16" r="11.5" stroke="url(#orakly-mark-grad)" strokeWidth="2.25" />
+      <circle cx="22.4" cy="9.6" r="2.35" fill="#38bdf8" />
+    </svg>
+  );
+}
 
 export function BrandWordmarkLink({
   href = ROUTES.home,
@@ -33,7 +54,7 @@ export function BrandWordmarkLink({
   const nav = variant === "nav";
   const newTab = openInNewTab ? ({ target: "_blank", rel: "noopener noreferrer" } as const) : {};
 
-  if (failed) {
+  if (failed && !nav) {
     return (
       <Link
         href={href}
@@ -42,8 +63,7 @@ export function BrandWordmarkLink({
         aria-label="Orakly Market home"
         {...newTab}
       >
-        <NavGlyphFallback />
-        {showTitle ? <BrandTitle nav={nav} /> : null}
+        <span className="font-display text-base font-bold text-white">Orakly Market</span>
       </Link>
     );
   }
@@ -54,75 +74,36 @@ export function BrandWordmarkLink({
       onClick={onClick}
       className={cn(
         "group flex shrink-0 items-center transition duration-200 hover:opacity-[0.98]",
-        nav ? "gap-2.5 min-w-0 sm:gap-3.5" : "gap-2.5 sm:gap-3",
+        nav ? "min-w-0 gap-2.5 sm:gap-3" : "gap-2.5 sm:gap-3",
         className,
       )}
       aria-label="Orakly Market home"
       {...newTab}
     >
-      <span
-        className={cn(
-          nav &&
-            "marketing-brand-mark relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-xl sm:size-11",
-        )}
-      >
-        {nav ? (
-          <span
-            className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-sky-400/20 via-transparent to-violet-500/15 opacity-80"
-            aria-hidden
-          />
-        ) : null}
-        {nav ? (
-          <Image
-            src={BRAND_LOGO_NAV}
-            alt="Orakly"
-            width={44}
-            height={44}
-            unoptimized
-            priority={priority}
-            className={cn(
-              "relative z-[1] h-8 w-8 object-contain object-center sm:h-9 sm:w-9",
-              imgClassName,
-            )}
-            onError={() => setFailed(true)}
-          />
-        ) : (
-          <Image
-            src={BRAND_LOGO_NAV}
-            alt="Orakly Market"
-            width={200}
-            height={52}
-            unoptimized
-            priority={priority}
-            className={cn("h-8 w-auto max-w-[120px] object-contain object-left sm:h-9", imgClassName)}
-            onError={() => setFailed(true)}
-          />
-        )}
-      </span>
+      {nav ? (
+        <NavBrandMark />
+      ) : (
+        <Image
+          src={BRAND_LOGO_NAV}
+          alt=""
+          width={200}
+          height={52}
+          unoptimized
+          priority={priority}
+          className={cn("h-8 w-auto max-w-[120px] object-contain object-left sm:h-9", imgClassName)}
+          onError={() => setFailed(true)}
+        />
+      )}
       {showTitle ? <BrandTitle nav={nav} /> : null}
     </Link>
-  );
-}
-
-function NavGlyphFallback() {
-  return (
-    <span className="marketing-brand-mark flex size-10 items-center justify-center rounded-xl text-sky-300 sm:size-11">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={BRAND_GLYPH_SVG} alt="" className="size-6 text-sky-300" />
-    </span>
   );
 }
 
 function BrandTitle({ nav }: { nav: boolean }) {
   if (nav) {
     return (
-      <span className="flex min-w-0 flex-col justify-center leading-[1.1]">
-        <span className="truncate font-display text-[0.9rem] font-bold tracking-[-0.03em] text-white sm:text-[1.05rem] lg:text-lg">
-          Orakly Market
-        </span>
-        <span className="mt-0.5 truncate font-mono text-[8px] font-semibold uppercase tracking-[0.16em] text-white/70 sm:mt-1 sm:text-[10px] sm:tracking-[0.2em] lg:text-[11px]">
-          On-chain predictions
-        </span>
+      <span className="truncate font-display text-[0.95rem] font-bold tracking-[-0.03em] text-white sm:text-[1.05rem] lg:text-lg">
+        Orakly Market
       </span>
     );
   }
