@@ -142,7 +142,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <div className="marketing-nav-social-cluster flex" aria-label="Social links">
+      <div className="marketing-nav-social-cluster hidden lg:flex" aria-label="Social links">
         <SocialIconLinks />
       </div>
       <ComingSoonButton className="marketing-nav-cta hidden lg:inline-flex" featureLabel="Launch app">
@@ -162,6 +162,9 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
+      <div className="marketing-nav-social-cluster flex w-full justify-center py-2" aria-label="Social links">
+        <SocialIconLinks />
+      </div>
       <ComingSoonButton
         className="marketing-nav-cta w-full justify-center py-2.5"
         featureLabel="Launch app"
