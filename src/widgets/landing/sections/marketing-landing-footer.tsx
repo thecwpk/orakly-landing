@@ -89,7 +89,11 @@ export function MarketingLandingFooter() {
             <nav className="mt-4 flex flex-col gap-2" aria-label="Footer product">
               {PRODUCT_LINKS.map((item) =>
                 "comingSoon" in item ? (
-                  <ComingSoonButton key={item.label} className={cn(footerLinkClass, "text-left")}>
+                  <ComingSoonButton
+                    key={item.label}
+                    featureLabel={item.label}
+                    className={cn(footerLinkClass, "text-left")}
+                  >
                     {item.label}
                   </ComingSoonButton>
                 ) : (

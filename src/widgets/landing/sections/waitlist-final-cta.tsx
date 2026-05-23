@@ -44,7 +44,10 @@ export function WaitlistFinalCta() {
 
         <div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
           <span>Already in?</span>
-          <ComingSoonButton className="inline-flex items-center gap-1.5 font-semibold text-foreground hover:text-yes focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yes/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+          <ComingSoonButton
+            featureLabel="Launch app"
+            className="inline-flex items-center gap-1.5 font-semibold text-foreground hover:text-yes focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yes/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
             Launch app
             <ArrowRight className="size-4" aria-hidden />
           </ComingSoonButton>

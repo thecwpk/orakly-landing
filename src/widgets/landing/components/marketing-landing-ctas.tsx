@@ -14,11 +14,13 @@ const secondaryClass =
 export function MarketingLandingCtas({ className }: { className?: string }) {
   return (
     <div className={cn("grid grid-cols-2 gap-3 sm:flex sm:flex-wrap", className)}>
-      <ComingSoonButton className={primaryClass}>
+      <ComingSoonButton className={primaryClass} featureLabel="Launch app">
         Launch app
         <ArrowRight className="size-4" aria-hidden />
       </ComingSoonButton>
-      <ComingSoonButton className={secondaryClass}>Explore markets</ComingSoonButton>
+      <ComingSoonButton className={secondaryClass} featureLabel="Explore markets">
+        Explore markets
+      </ComingSoonButton>
     </div>
   );
 }

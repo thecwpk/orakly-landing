@@ -5,29 +5,20 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { BRAND_LOGO_NAV } from "@/shared/constants/brand-logos";
+import { BRAND_LOGO_NAV, BRAND_GLYPH_SVG } from "@/shared/constants/brand-logos";
 import { ROUTES } from "@/shared/constants/routes";
-
-export type BrandWordmarkTone = "onDark" | "onLight" | "theme";
 
 export type BrandWordmarkLinkProps = {
   href?: string;
-  tone?: BrandWordmarkTone;
-  /** Show “Orakly Market” beside the mark. */
   showTitle?: boolean;
-  /** Nav lockup — glass frame + blend so dark PNG sits on blue chrome. */
   variant?: "default" | "nav";
   className?: string;
   imgClassName?: string;
   priority?: boolean;
   onClick?: () => void;
-  /** Opens in a new tab — used by marketing chrome / footer where CTAs leave the narrative page. */
   openInNewTab?: boolean;
 };
 
-/**
- * Home link + Orakly mark + optional title.
- */
 export function BrandWordmarkLink({
   href = ROUTES.home,
   showTitle = false,
@@ -51,7 +42,8 @@ export function BrandWordmarkLink({
         aria-label="Orakly Market home"
         {...newTab}
       >
-        <BrandTitleFallback nav={nav} />
+        <NavGlyphFallback />
+        {showTitle ? <BrandTitle nav={nav} /> : null}
       </Link>
     );
   }
@@ -80,26 +72,44 @@ export function BrandWordmarkLink({
             aria-hidden
           />
         ) : null}
-        <Image
-          src={BRAND_LOGO_NAV}
-          alt=""
-          width={nav ? 88 : 200}
-          height={nav ? 88 : 52}
-          unoptimized
-          priority={priority}
-          className={cn(
-            nav
-              ? "relative z-[1] size-[1.65rem] object-contain object-center mix-blend-lighten sm:size-[1.85rem]"
-              : showTitle
-                ? "h-8 w-auto max-w-[88px] object-contain object-left sm:h-9 sm:max-w-[100px]"
-                : "h-7 w-auto max-w-[min(52vw,200px)] object-contain object-left sm:h-8 sm:max-w-[220px]",
-            imgClassName,
-          )}
-          onError={() => setFailed(true)}
-        />
+        {nav ? (
+          <Image
+            src={BRAND_LOGO_NAV}
+            alt="Orakly"
+            width={44}
+            height={44}
+            unoptimized
+            priority={priority}
+            className={cn(
+              "relative z-[1] h-8 w-8 object-contain object-center sm:h-9 sm:w-9",
+              imgClassName,
+            )}
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <Image
+            src={BRAND_LOGO_NAV}
+            alt="Orakly Market"
+            width={200}
+            height={52}
+            unoptimized
+            priority={priority}
+            className={cn("h-8 w-auto max-w-[120px] object-contain object-left sm:h-9", imgClassName)}
+            onError={() => setFailed(true)}
+          />
+        )}
       </span>
       {showTitle ? <BrandTitle nav={nav} /> : null}
     </Link>
+  );
+}
+
+function NavGlyphFallback() {
+  return (
+    <span className="marketing-brand-mark flex size-10 items-center justify-center rounded-xl text-sky-300 sm:size-11">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={BRAND_GLYPH_SVG} alt="" className="size-6 text-sky-300" />
+    </span>
   );
 }
 
@@ -118,31 +128,6 @@ function BrandTitle({ nav }: { nav: boolean }) {
   }
 
   return (
-    <span className="flex flex-col justify-center leading-none">
-      <span className="font-display text-[15px] font-bold tracking-[-0.02em] sm:text-base">
-        <span className="bg-gradient-to-r from-slate-100 via-white to-sky-200 bg-clip-text text-transparent">
-          Orakly
-        </span>
-      </span>
-      <span className="mt-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-sky-300/75 transition group-hover:text-sky-200/90 sm:text-[10px]">
-        Market
-      </span>
-    </span>
-  );
-}
-
-function BrandTitleFallback({ nav }: { nav: boolean }) {
-  if (nav) {
-    return (
-      <span className="font-display text-base font-bold tracking-tight text-white sm:text-lg">
-        Orakly Market
-      </span>
-    );
-  }
-  return (
-    <span className="flex flex-col leading-none">
-      <span className="font-display text-[15px] font-bold text-foreground">Orakly</span>
-      <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-sky-300/80">Market</span>
-    </span>
+    <span className="font-display text-base font-bold text-white">Orakly Market</span>
   );
 }

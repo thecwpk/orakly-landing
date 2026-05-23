@@ -9,39 +9,13 @@ import { BrandWordmarkLink } from "@/shared/ui";
 import { ROUTES } from "@/shared/constants/routes";
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
 import { LANDING_EXTERNAL_LINKS } from "@/widgets/landing/lib/landing-external-links";
+import {
+  LANDING_NAV_SECTIONS,
+  scrollToLandingSection,
+} from "@/widgets/landing/lib/landing-nav-sections";
 import { landingShell } from "@/widgets/landing/sections/marketing-landing-rail";
 
-type NavRow = {
-  label: string;
-  landing: { href: string; isRoute: boolean; comingSoon?: boolean };
-  app: { href: string; isRoute: boolean };
-};
-
-const NAV_ROWS: NavRow[] = [
-  {
-    label: "Markets",
-    landing: { href: "#live-markets", isRoute: false, comingSoon: true },
-    app: { href: ROUTES.discover, isRoute: true },
-  },
-  {
-    label: "How it works",
-    landing: { href: "#how-it-works", isRoute: false },
-    app: { href: `${ROUTES.home}#how-it-works`, isRoute: true },
-  },
-  {
-    label: "Roadmap",
-    landing: { href: "#roadmap", isRoute: false },
-    app: { href: `${ROUTES.home}#roadmap`, isRoute: true },
-  },
-];
-
 const NEW_TAB = { target: "_blank" as const, rel: "noopener noreferrer" as const };
-
-function scrollToHash(hash: string) {
-  const id = hash.replace(/^#/, "");
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export type GlobalMarketingNavbarProps = {
   variant: "landing" | "app";
@@ -64,102 +38,35 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
   }, [app]);
 
   const navLinkClass = cn(
-    "marketing-nav-link rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200",
+    "marketing-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-colors duration-200 sm:px-3 sm:text-[13px]",
     glass
       ? "text-[var(--text-muted)] hover:bg-white/[0.06] hover:text-[var(--text-primary)]"
       : "text-slate-300/90 hover:bg-sky-500/[0.08] hover:text-white",
   );
 
   const externalLinkClass = cn(
-    "marketing-nav-signin hidden sm:inline-flex",
+    "marketing-nav-signin hidden lg:inline-flex",
     glass && "text-[var(--text-muted)]",
   );
 
-  const renderLandingAnchor = (row: NavRow, onNavigate?: () => void) => {
-    const spec = row.landing;
-    if (spec.comingSoon) {
-      return (
-        <ComingSoonButton
-          key={row.label}
-          className={navLinkClass}
-          onClick={onNavigate}
-        >
-          {row.label}
-        </ComingSoonButton>
-      );
-    }
-    return (
-      <a
-        key={row.label}
-        href={spec.href}
-        className={navLinkClass}
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToHash(spec.href);
-          onNavigate?.();
-        }}
-      >
-        {row.label}
-      </a>
-    );
-  };
-
-  const renderNavLink = (row: NavRow) => {
-    if (!app) return renderLandingAnchor(row);
-    const spec = row.app;
-    return (
-      <Link key={row.label} href={spec.href} className={navLinkClass} {...NEW_TAB}>
-        {row.label}
-      </Link>
-    );
-  };
-
-  const renderMobileNavLink = (row: NavRow, onNavigate: () => void) => {
-    if (!app) {
-      const spec = row.landing;
-      if (spec.comingSoon) {
-        return (
-          <ComingSoonButton
-            key={row.label}
-            className={cn(
-              "rounded-xl px-3 py-2.5 text-left text-sm font-medium transition",
-              glass
-                ? "text-[var(--text-muted)] hover:bg-white/[0.06] hover:text-[var(--text-primary)]"
-                : "text-slate-300 hover:bg-sky-500/[0.08] hover:text-white",
-            )}
-            onClick={onNavigate}
-          >
-            {row.label}
-          </ComingSoonButton>
-        );
-      }
-      return (
-        <a
-          key={row.label}
-          href={spec.href}
-          className={cn(
-            "rounded-xl px-3 py-2.5 text-sm font-medium transition",
-            glass
-              ? "text-[var(--text-muted)] hover:bg-white/[0.06] hover:text-[var(--text-primary)]"
-              : "text-slate-300 hover:bg-sky-500/[0.08] hover:text-white",
-          )}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToHash(spec.href);
-            onNavigate();
-          }}
-        >
-          {row.label}
-        </a>
-      );
-    }
-    const spec = row.app;
-    return (
-      <Link key={row.label} href={spec.href} className={navLinkClass} onClick={onNavigate} {...NEW_TAB}>
-        {row.label}
-      </Link>
-    );
-  };
+  const renderSectionLink = (
+    item: (typeof LANDING_NAV_SECTIONS)[number],
+    className: string,
+    onNavigate?: () => void,
+  ) => (
+    <a
+      key={item.href}
+      href={item.href}
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToLandingSection(item.href);
+        onNavigate?.();
+      }}
+    >
+      {item.label}
+    </a>
+  );
 
   const rightActions = app ? (
     <>
@@ -178,26 +85,18 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       <a href={LANDING_EXTERNAL_LINKS.dextools} className={externalLinkClass} {...NEW_TAB}>
         Dextool
       </a>
-      <ComingSoonButton className="marketing-nav-cta hidden sm:inline-flex">Launch app</ComingSoonButton>
+      <ComingSoonButton className="marketing-nav-cta hidden sm:inline-flex" featureLabel="Launch app">
+        Launch app
+      </ComingSoonButton>
     </>
   );
 
   const mobileRightActions = app ? (
     <>
-      <Link
-        href={ROUTES.signIn}
-        className="marketing-nav-signin justify-center py-2.5"
-        onClick={() => setOpen(false)}
-        {...NEW_TAB}
-      >
+      <Link href={ROUTES.signIn} className="marketing-nav-signin justify-center py-2.5" onClick={() => setOpen(false)} {...NEW_TAB}>
         Sign in
       </Link>
-      <Link
-        href={ROUTES.dapp}
-        className="marketing-nav-cta justify-center py-2.5"
-        onClick={() => setOpen(false)}
-        {...NEW_TAB}
-      >
+      <Link href={ROUTES.dapp} className="marketing-nav-cta justify-center py-2.5" onClick={() => setOpen(false)} {...NEW_TAB}>
         Launch app
       </Link>
     </>
@@ -221,6 +120,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       </a>
       <ComingSoonButton
         className="marketing-nav-cta w-full justify-center py-2.5"
+        featureLabel="Launch app"
         onClick={() => setOpen(false)}
       >
         Launch app
@@ -252,15 +152,17 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           variant="nav"
           priority
           openInNewTab={app}
-          className="relative z-[2] min-w-0 shrink-0"
+          className="relative z-[2] min-w-0 max-w-[42%] shrink-0 sm:max-w-none"
         />
 
-        <nav
-          className="absolute left-1/2 z-[1] hidden max-w-[min(100vw-12rem,28rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] md:flex [&::-webkit-scrollbar]:hidden"
-          aria-label="Primary"
-        >
-          {NAV_ROWS.map(renderNavLink)}
-        </nav>
+        {!app ? (
+          <nav
+            className="absolute left-1/2 z-[1] hidden max-w-[min(calc(100vw-11rem),52rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] md:flex [&::-webkit-scrollbar]:hidden"
+            aria-label="Page sections"
+          >
+            {LANDING_NAV_SECTIONS.map((item) => renderSectionLink(item, navLinkClass))}
+          </nav>
+        ) : null}
 
         <div className="relative z-[2] ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1.5 sm:gap-2">
           {rightActions}
@@ -287,8 +189,17 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           open ? "block" : "hidden",
         )}
       >
-        <nav className={cn(landingShell, "flex flex-col gap-1 py-3")} aria-label="Mobile primary">
-          {NAV_ROWS.map((row) => renderMobileNavLink(row, () => setOpen(false)))}
+        <nav className={cn(landingShell, "flex flex-col gap-1 py-3")} aria-label="Mobile sections">
+          {LANDING_NAV_SECTIONS.map((item) =>
+            renderSectionLink(
+              item,
+              cn(
+                "rounded-xl px-3 py-2.5 text-sm font-medium transition",
+                "text-slate-300 hover:bg-sky-500/[0.08] hover:text-white",
+              ),
+              () => setOpen(false),
+            ),
+          )}
           <div className="mt-2 flex flex-col gap-2 border-t border-white/[0.06] pt-3">{mobileRightActions}</div>
         </nav>
       </div>

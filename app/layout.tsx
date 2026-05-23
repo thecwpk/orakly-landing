@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
-import { Toaster } from "sonner";
 
+import { ComingSoonProvider } from "@/widgets/landing/components/coming-soon-modal";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,8 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`dark ${inter.variable} ${sora.variable} font-sans`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
-        {children}
-        <Toaster richColors position="top-center" />
+        <ComingSoonProvider>{children}</ComingSoonProvider>
       </body>
     </html>
   );
