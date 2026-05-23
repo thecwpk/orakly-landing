@@ -60,6 +60,7 @@ function SocialIconLinks({ className }: { className?: string }) {
 export function GlobalMarketingNavbar({ variant, appendActions, chrome = "default" }: GlobalMarketingNavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHash, setActiveHash] = useState<string>(LANDING_NAV_SECTIONS[0].href);
   const app = variant === "app";
   const glass = !app && chrome === "glass";
 
@@ -72,6 +73,31 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
   }, [app]);
 
   useEffect(() => {
+    if (app) return;
+
+    const sectionEls = LANDING_NAV_SECTIONS.map((s) => document.getElementById(s.href.replace(/^#/, ""))).filter(
+      Boolean,
+    ) as HTMLElement[];
+
+    if (!sectionEls.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target.id) {
+          setActiveHash(`#${visible[0].target.id}`);
+        }
+      },
+      { rootMargin: "-42% 0px -48% 0px", threshold: [0.12, 0.35, 0.55] },
+    );
+
+    sectionEls.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [app]);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -79,25 +105,26 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
   }, [open]);
 
   const navLinkClass = cn(
-    "marketing-nav-link shrink-0 whitespace-nowrap rounded-full px-2 py-1.5 text-[11px] font-medium transition-colors duration-200 md:px-2.5 md:text-[12px] lg:px-3 lg:text-[13px]",
-    glass
-      ? "text-[var(--text-muted)] hover:bg-white/[0.06] hover:text-[var(--text-primary)]"
-      : "text-slate-300/90 hover:bg-sky-500/[0.08] hover:text-white",
+    "marketing-nav-link shrink-0 whitespace-nowrap rounded-full px-2 py-1.5 text-[11px] font-medium md:px-2.5 md:text-[12px] lg:px-3 lg:text-[13px]",
+    glass && "text-[var(--text-muted)] hover:text-[var(--text-primary)]",
   );
+
+  const isActive = (href: string) => activeHash === href;
 
   const renderSectionLink = (
     item: (typeof LANDING_NAV_SECTIONS)[number],
     className: string,
-    onNavigate?: () => void,
+    options?: { onNavigate?: () => void; activeClassName?: string },
   ) => (
     <a
       key={item.href}
       href={item.href}
-      className={className}
+      className={cn(className, !app && isActive(item.href) && options?.activeClassName)}
+      aria-current={!app && isActive(item.href) ? "true" : undefined}
       onClick={(e) => {
         e.preventDefault();
         scrollToLandingSection(item.href);
-        onNavigate?.();
+        options?.onNavigate?.();
       }}
     >
       {item.label}
@@ -115,7 +142,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <div className="marketing-nav-social-cluster" aria-label="Social links">
+      <div className="marketing-nav-social-cluster flex" aria-label="Social links">
         <SocialIconLinks />
       </div>
       <ComingSoonButton className="marketing-nav-cta hidden lg:inline-flex" featureLabel="Launch app">
@@ -135,9 +162,6 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <div className="marketing-nav-social-cluster w-full justify-center py-1 sm:hidden" aria-label="Social links">
-        <SocialIconLinks />
-      </div>
       <ComingSoonButton
         className="marketing-nav-cta w-full justify-center py-2.5"
         featureLabel="Launch app"
@@ -150,12 +174,12 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
   return (
     <header
+      data-scrolled={!app && scrolled ? "true" : undefined}
       className={cn(
         "marketing-nav-shell sticky top-0 z-50 max-w-[100vw] overflow-x-hidden text-foreground transition-[box-shadow,backdrop-filter] duration-300",
         glass
           ? "z-[70] border-b border-[color:var(--border-soft)] bg-[color-mix(in_srgb,var(--bg-2)_78%,transparent)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--bg-2)_65%,transparent)]"
           : "marketing-header-shell",
-        !app && scrolled && "shadow-[0_12px_40px_-16px_rgba(8,20,48,0.55)]",
       )}
     >
       <div
@@ -173,7 +197,9 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
         {!app ? (
           <nav className="marketing-nav-center" aria-label="Page sections">
-            {LANDING_NAV_SECTIONS.map((item) => renderSectionLink(item, navLinkClass))}
+            {LANDING_NAV_SECTIONS.map((item) =>
+              renderSectionLink(item, navLinkClass, { activeClassName: "marketing-nav-link--active" }),
+            )}
           </nav>
         ) : null}
 
@@ -186,7 +212,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           ) : null}
           <button
             type="button"
-            className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-sky-500/15 bg-sky-500/[0.06] text-foreground transition hover:border-sky-400/30 hover:bg-sky-500/10 sm:size-10 lg:hidden"
+            className="marketing-nav-menu-btn flex size-9 shrink-0 items-center justify-center text-foreground sm:size-10 lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
@@ -198,20 +224,16 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
       <div
         className={cn(
-          "max-h-[min(85dvh,32rem)] overflow-y-auto border-t border-sky-500/10 bg-[hsl(225_32%_11%_/_0.98)] backdrop-blur-xl lg:hidden",
+          "marketing-nav-drawer max-h-[min(85dvh,32rem)] overflow-y-auto backdrop-blur-xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >
-        <nav className={cn(landingShell, "flex flex-col gap-1 py-3")} aria-label="Mobile sections">
+        <nav className={cn(landingShell, "flex flex-col gap-0.5 py-3")} aria-label="Mobile sections">
           {LANDING_NAV_SECTIONS.map((item) =>
-            renderSectionLink(
-              item,
-              cn(
-                "rounded-xl px-3 py-3 text-sm font-medium transition",
-                "text-slate-300 hover:bg-sky-500/[0.08] hover:text-white",
-              ),
-              () => setOpen(false),
-            ),
+            renderSectionLink(item, "marketing-nav-drawer-link px-3 py-3 text-sm font-medium", {
+              activeClassName: "marketing-nav-drawer-link--active",
+              onNavigate: () => setOpen(false),
+            }),
           )}
           <div className="mt-2 flex flex-col gap-2 border-t border-white/[0.06] pt-3">{mobileRightActions}</div>
         </nav>

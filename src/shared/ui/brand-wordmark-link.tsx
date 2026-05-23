@@ -52,7 +52,7 @@ function BrandTitle({ nav }: { nav: boolean }) {
     return (
       <span className="truncate font-display font-bold tracking-[-0.03em] text-white">
         Orakly
-        <span className="hidden min-[400px]:inline"> Market</span>
+        <span className="hidden min-[400px]:inline text-white"> Market</span>
       </span>
     );
   }
