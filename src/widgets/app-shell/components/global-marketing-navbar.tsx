@@ -142,10 +142,10 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <div className="marketing-nav-social-cluster hidden lg:flex" aria-label="Social links">
+      <div className="marketing-nav-social-cluster marketing-nav-social-cluster--bar" aria-label="Social links">
         <SocialIconLinks />
       </div>
-      <ComingSoonButton className="marketing-nav-cta hidden lg:inline-flex" featureLabel="Launch app">
+      <ComingSoonButton className="marketing-nav-cta marketing-nav-cta--bar" featureLabel="Launch app">
         Launch app
       </ComingSoonButton>
     </>
@@ -156,17 +156,17 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       <Link href={ROUTES.signIn} className="marketing-nav-signin justify-center py-2.5" onClick={() => setOpen(false)} {...NEW_TAB}>
         Sign in
       </Link>
-      <Link href={ROUTES.dapp} className="marketing-nav-cta justify-center py-2.5" onClick={() => setOpen(false)} {...NEW_TAB}>
+      <Link href={ROUTES.dapp} className="marketing-nav-cta inline-flex justify-center py-2.5" onClick={() => setOpen(false)} {...NEW_TAB}>
         Launch app
       </Link>
     </>
   ) : (
     <>
-      <div className="marketing-nav-social-cluster flex w-full justify-center py-2" aria-label="Social links">
+      <div className="marketing-nav-social-cluster marketing-nav-social-cluster--drawer w-full justify-center py-2" aria-label="Social links">
         <SocialIconLinks />
       </div>
       <ComingSoonButton
-        className="marketing-nav-cta w-full justify-center py-2.5"
+        className="marketing-nav-cta inline-flex w-full justify-center py-2.5"
         featureLabel="Launch app"
         onClick={() => setOpen(false)}
       >
