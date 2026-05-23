@@ -50,9 +50,9 @@ export function BrandWordmarkLink({
 function BrandTitle({ nav }: { nav: boolean }) {
   if (nav) {
     return (
-      <span className="truncate font-display font-bold tracking-[-0.03em] text-white">
-        Orakly
-        <span className="hidden min-[400px]:inline text-white"> Market</span>
+      <span className="marketing-nav-brand-title truncate">
+        <span className="marketing-nav-brand-name">Orakly</span>
+        <span className="marketing-nav-brand-suffix hidden min-[400px]:inline"> Market</span>
       </span>
     );
   }

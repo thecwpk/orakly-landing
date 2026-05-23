@@ -19,15 +19,15 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: {
-    default: "Orakly Market — on-chain prediction markets",
-    template: "%s · Orakly Market",
+    default: "Orakly",
+    template: "%s · Orakly",
   },
   description:
     "Trade live odds on crypto, macro, sports, and tech. Transparent rules, stablecoin rails, and verifiable on-chain settlement.",
   openGraph: {
     type: "website",
-    siteName: "Orakly Market",
-    title: "Orakly Market — on-chain prediction markets",
+    siteName: "Orakly",
+    title: "Orakly",
     description: "On-chain prediction markets. Trade live odds.",
   },
 };
