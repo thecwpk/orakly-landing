@@ -85,7 +85,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       <a href={LANDING_EXTERNAL_LINKS.dextools} className={externalLinkClass} {...NEW_TAB}>
         Dextool
       </a>
-      <ComingSoonButton className="marketing-nav-cta hidden sm:inline-flex" featureLabel="Launch app">
+      <ComingSoonButton className="marketing-nav-cta hidden lg:inline-flex" featureLabel="Launch app">
         Launch app
       </ComingSoonButton>
     </>
@@ -132,7 +132,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     <header
       data-scrolled={!app && scrolled ? "true" : undefined}
       className={cn(
-        "marketing-nav-shell sticky top-0 z-50 text-foreground transition-[box-shadow,backdrop-filter] duration-300",
+        "marketing-nav-shell sticky top-0 z-50 max-w-[100vw] overflow-x-hidden text-foreground transition-[box-shadow,backdrop-filter] duration-300",
         glass
           ? "z-[70] border-b border-[color:var(--border-soft)] bg-[color-mix(in_srgb,var(--bg-2)_78%,transparent)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--bg-2)_65%,transparent)]"
           : "marketing-header-shell",
@@ -142,7 +142,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       <div
         className={cn(
           landingShell,
-          "relative flex items-center justify-between gap-2 transition-[height] duration-200 sm:gap-3",
+          "relative flex min-w-0 items-center justify-between gap-2 overflow-hidden transition-[height] duration-200 sm:gap-3",
           !app && scrolled ? "h-[3.25rem]" : "h-14 sm:h-[3.75rem]",
         )}
       >
@@ -152,12 +152,12 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           variant="nav"
           priority
           openInNewTab={app}
-          className="relative z-[2] min-w-0 max-w-[42%] shrink-0 sm:max-w-none"
+          className="relative z-[2] min-w-0 shrink"
         />
 
         {!app ? (
           <nav
-            className="absolute left-1/2 z-[1] hidden max-w-[min(calc(100vw-11rem),52rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] md:flex [&::-webkit-scrollbar]:hidden"
+            className="absolute left-1/2 z-[1] hidden max-w-[min(calc(100vw-11rem),52rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden"
             aria-label="Page sections"
           >
             {LANDING_NAV_SECTIONS.map((item) => renderSectionLink(item, navLinkClass))}
@@ -173,7 +173,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           ) : null}
           <button
             type="button"
-            className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-sky-500/15 bg-sky-500/[0.06] text-foreground transition hover:border-sky-400/30 hover:bg-sky-500/10 md:hidden"
+            className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-sky-500/15 bg-sky-500/[0.06] text-foreground transition hover:border-sky-400/30 hover:bg-sky-500/10 lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
@@ -185,7 +185,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
       <div
         className={cn(
-          "border-t border-sky-500/10 bg-[hsl(225_32%_11%_/_0.95)] backdrop-blur-xl md:hidden",
+          "border-t border-sky-500/10 bg-[hsl(225_32%_11%_/_0.95)] backdrop-blur-xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >

@@ -116,11 +116,11 @@ function NavGlyphFallback() {
 function BrandTitle({ nav }: { nav: boolean }) {
   if (nav) {
     return (
-      <span className="flex min-w-0 flex-col justify-center leading-[1.12]">
+      <span className="hidden min-w-0 flex-col justify-center leading-[1.12] lg:flex">
         <span className="font-display text-[1.05rem] font-bold tracking-[-0.03em] text-white sm:text-lg">
           Orakly Market
         </span>
-        <span className="mt-1 hidden font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75 sm:block sm:text-[11px]">
+        <span className="mt-1 hidden font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75 lg:block sm:text-[11px]">
           On-chain predictions
         </span>
       </span>
