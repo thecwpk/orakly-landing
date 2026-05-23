@@ -34,8 +34,8 @@ export function BrandWordmarkLink({
       onClick={onClick}
       className={cn(
         "group flex shrink-0 items-center transition duration-200 hover:opacity-[0.98]",
-        "items-center gap-2 min-[400px]:gap-2.5 sm:gap-3",
         nav && "marketing-nav-wordmark",
+        !nav && "items-center gap-2 min-[400px]:gap-2.5 sm:gap-3",
         className,
       )}
       aria-label="Orakly Market home"

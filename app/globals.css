@@ -163,18 +163,20 @@
     }
   }
 
-  /* Orakly logo — scales by breakpoint */
+  /* Orakly logo — mobile-first sizing (match social / menu height) */
   .marketing-nav-wordmark {
     min-width: 0;
-    max-width: min(52vw, 14rem);
-    font-size: 0.8125rem;
-    line-height: 1;
+    max-width: min(58vw, 12.5rem);
+    font-size: 1.0625rem;
+    line-height: 1.1;
+    gap: 0.5rem;
   }
 
   @media (min-width: 400px) {
     .marketing-nav-wordmark {
-      max-width: min(48vw, 16rem);
-      font-size: 0.875rem;
+      max-width: min(54vw, 14rem);
+      font-size: 1.125rem;
+      gap: 0.5625rem;
     }
   }
 
@@ -182,21 +184,23 @@
     .marketing-nav-wordmark {
       max-width: none;
       font-size: 0.95rem;
+      gap: 0.75rem;
     }
   }
 
   @media (min-width: 1024px) {
     .marketing-nav-wordmark {
       font-size: 1.125rem;
+      gap: 0.75rem;
     }
   }
 
   .marketing-nav-orakly-slot {
     display: block;
-    width: 1.35em;
-    height: 1.35em;
-    min-width: 1.625rem;
-    min-height: 1.625rem;
+    width: 2.125rem;
+    height: 2.125rem;
+    min-width: 2.125rem;
+    min-height: 2.125rem;
     flex-shrink: 0;
     background-color: #fff;
     -webkit-mask-image: url(/brand/orakly-mark-dark.PNG);
@@ -232,6 +236,29 @@
       min-width: 3.25rem;
       min-height: 3.25rem;
       filter: drop-shadow(0 0 10px hsl(198 90% 62% / 0.22));
+    }
+  }
+
+  /* Mobile nav — compact right cluster so brand stays prominent */
+  @media (max-width: 639px) {
+    .marketing-nav-social-cluster {
+      gap: 0.0625rem;
+      padding: 0.0625rem 0.125rem;
+    }
+
+    .marketing-nav-social-btn {
+      width: 1.875rem;
+      height: 1.875rem;
+    }
+
+    .marketing-nav-cta {
+      padding: 0.375rem 0.6875rem;
+      font-size: 0.6875rem;
+    }
+
+    .marketing-nav-menu-btn {
+      width: 2rem;
+      height: 2rem;
     }
   }
 

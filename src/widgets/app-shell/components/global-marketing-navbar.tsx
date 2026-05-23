@@ -212,7 +212,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           ) : null}
           <button
             type="button"
-            className="marketing-nav-menu-btn flex size-9 shrink-0 items-center justify-center text-foreground sm:size-10 lg:hidden"
+            className="marketing-nav-menu-btn flex size-8 shrink-0 items-center justify-center text-foreground sm:size-10 lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}

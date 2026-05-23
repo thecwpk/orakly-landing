@@ -8,7 +8,7 @@ export function XLogo({ className }: { className?: string }) {
       role="img"
       aria-hidden
       className={cn(
-        "size-5 shrink-0 text-white transition-opacity duration-200 group-hover:opacity-100",
+        "size-[1.125rem] shrink-0 text-white sm:size-5 transition-opacity duration-200 group-hover:opacity-100",
         className,
       )}
       fill="currentColor"

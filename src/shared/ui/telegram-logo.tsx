@@ -8,7 +8,7 @@ export function TelegramLogo({ className }: { className?: string }) {
       role="img"
       aria-hidden
       className={cn(
-        "size-5 shrink-0 text-sky-400/90 transition-colors duration-200 group-hover:text-sky-300",
+        "size-[1.125rem] shrink-0 text-sky-400/90 sm:size-5 transition-colors duration-200 group-hover:text-sky-300",
         className,
       )}
       fill="currentColor"

@@ -15,7 +15,7 @@ export function DextoolsLogo({ className }: { className?: string }) {
       width={20}
       height={20}
       unoptimized
-      className={cn("size-5 shrink-0 rounded-[5px] bg-white object-contain p-[2px]", className)}
+      className={cn("size-[1.125rem] shrink-0 rounded-[4px] bg-white object-contain p-[1px] sm:size-5 sm:rounded-[5px] sm:p-[2px]", className)}
     />
   );
 }
