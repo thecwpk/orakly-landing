@@ -5,7 +5,7 @@ import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-butto
 import { DenseMarketCard } from "@/widgets/landing/components/dense-market-card";
 import { cn } from "@/lib/utils";
 import {
-  landingEyebrow,
+  landingSectionLabel,
   landingH2,
   landingLead,
   landingBandInner,
@@ -111,7 +111,7 @@ export function LiveMarketsGrid() {
       <LandingReveal className={cn(landingBandInner, "relative")}>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className={landingEyebrow}>Live markets</p>
+            <p className={landingSectionLabel}>Live markets</p>
             <h2 className={landingH2}>Real questions. Real odds.</h2>
             <p className={landingLead}>
               A slice of what trades right now on Orakly. Prices reflect live order flow.

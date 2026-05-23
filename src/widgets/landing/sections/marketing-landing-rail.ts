@@ -28,9 +28,13 @@ export const landingRail = landingShell;
 /** @deprecated Use `landingBandInner` with `landingSectionBand`. */
 export const landingRailSection = landingBandInner;
 
-/** Eyebrow — single tracking value across every section. */
+/** Small label inside cards and dense UI. */
 export const landingEyebrow =
   "font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground";
+
+/** Section band label — above each major H2 (Live markets, How it works, …). */
+export const landingSectionLabel =
+  "font-mono text-xs font-bold uppercase tracking-[0.22em] text-slate-300/90 sm:text-[0.8125rem] sm:tracking-[0.24em]";
 
 /** Accent eyebrow for premium bands. */
 export const landingEyebrowAccent = cn(landingEyebrow, "text-yes");

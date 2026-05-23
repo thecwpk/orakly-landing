@@ -1,13 +1,11 @@
 "use client";
 
-import { Sparkles, TimerReset } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { howSteps } from "@/widgets/landing/sections/marketing-landing-content";
 import { LandingReveal } from "@/widgets/landing/sections/marketing-landing-layout";
 import {
   landingBandInner,
-  landingEyebrow,
+  landingSectionLabel,
   landingH2,
   landingLead,
   landingSectionBand,
@@ -39,16 +37,7 @@ export function HowItWorksAnimated() {
         aria-hidden
       />
       <LandingReveal className={landingBandInner}>
-        <div className="mb-8 flex w-full min-w-0 flex-wrap items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-2">
-            <Sparkles className="size-4 shrink-0 text-indigo-400/90" aria-hidden />
-            <p className={landingEyebrow}>How it works</p>
-          </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/[0.06] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-indigo-200/80 backdrop-blur-sm">
-            <TimerReset className="size-3.5 text-indigo-300" aria-hidden />
-            Live cycle
-          </span>
-        </div>
+        <p className={landingSectionLabel}>How it works</p>
         <h2 className={landingH2}>Three steps. No magic.</h2>
         <p className={landingLead}>
           Discover, trade, and settle on-chain. The loop runs live in the center while you read the detail.

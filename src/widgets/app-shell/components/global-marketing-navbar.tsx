@@ -6,6 +6,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { BrandWordmarkLink } from "@/shared/ui";
+import { DextoolsLogo } from "@/shared/ui/dextools-logo";
+import { TelegramLogo } from "@/shared/ui/telegram-logo";
 import { XLogo } from "@/shared/ui/x-logo";
 import { ROUTES } from "@/shared/constants/routes";
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
@@ -24,6 +26,37 @@ export type GlobalMarketingNavbarProps = {
   chrome?: "default" | "glass";
 };
 
+function SocialIconLinks({ className }: { className?: string }) {
+  return (
+    <>
+      <a
+        href={LANDING_EXTERNAL_LINKS.twitter}
+        className={cn("marketing-nav-social-btn", className)}
+        aria-label="X (formerly Twitter)"
+        {...NEW_TAB}
+      >
+        <XLogo />
+      </a>
+      <a
+        href={LANDING_EXTERNAL_LINKS.telegram}
+        className={cn("marketing-nav-social-btn", className)}
+        aria-label="Telegram"
+        {...NEW_TAB}
+      >
+        <TelegramLogo />
+      </a>
+      <a
+        href={LANDING_EXTERNAL_LINKS.dextools}
+        className={cn("marketing-nav-social-btn", className)}
+        aria-label="DexTools"
+        {...NEW_TAB}
+      >
+        <DextoolsLogo />
+      </a>
+    </>
+  );
+}
+
 export function GlobalMarketingNavbar({ variant, appendActions, chrome = "default" }: GlobalMarketingNavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -38,27 +71,18 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     return () => window.removeEventListener("scroll", onScroll);
   }, [app]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const navLinkClass = cn(
-    "marketing-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-colors duration-200 sm:px-3 sm:text-[13px]",
+    "marketing-nav-link shrink-0 whitespace-nowrap rounded-full px-2 py-1.5 text-[11px] font-medium transition-colors duration-200 md:px-2.5 md:text-[12px] lg:px-3 lg:text-[13px]",
     glass
       ? "text-[var(--text-muted)] hover:bg-white/[0.06] hover:text-[var(--text-primary)]"
       : "text-slate-300/90 hover:bg-sky-500/[0.08] hover:text-white",
-  );
-
-  const externalLinkClass = cn(
-    "marketing-nav-signin hidden size-10 shrink-0 p-0 lg:inline-flex",
-    glass && "text-[var(--text-muted)]",
-  );
-
-  const xLink = (
-    <a
-      href={LANDING_EXTERNAL_LINKS.twitter}
-      className={externalLinkClass}
-      aria-label="X (formerly Twitter)"
-      {...NEW_TAB}
-    >
-      <XLogo />
-    </a>
   );
 
   const renderSectionLink = (
@@ -91,10 +115,9 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      {xLink}
-      <a href={LANDING_EXTERNAL_LINKS.dextools} className={externalLinkClass} {...NEW_TAB}>
-        Dextool
-      </a>
+      <div className="marketing-nav-social-cluster" aria-label="Social links">
+        <SocialIconLinks />
+      </div>
       <ComingSoonButton className="marketing-nav-cta hidden lg:inline-flex" featureLabel="Launch app">
         Launch app
       </ComingSoonButton>
@@ -112,23 +135,9 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <a
-        href={LANDING_EXTERNAL_LINKS.twitter}
-        className="marketing-nav-signin inline-flex items-center justify-center py-2.5"
-        onClick={() => setOpen(false)}
-        aria-label="X (formerly Twitter)"
-        {...NEW_TAB}
-      >
-        <XLogo className="size-5" />
-      </a>
-      <a
-        href={LANDING_EXTERNAL_LINKS.dextools}
-        className="marketing-nav-signin justify-center py-2.5"
-        onClick={() => setOpen(false)}
-        {...NEW_TAB}
-      >
-        Dextool
-      </a>
+      <div className="marketing-nav-social-cluster w-full justify-center py-1 sm:hidden" aria-label="Social links">
+        <SocialIconLinks />
+      </div>
       <ComingSoonButton
         className="marketing-nav-cta w-full justify-center py-2.5"
         featureLabel="Launch app"
@@ -141,7 +150,6 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
   return (
     <header
-      data-scrolled={!app && scrolled ? "true" : undefined}
       className={cn(
         "marketing-nav-shell sticky top-0 z-50 max-w-[100vw] overflow-x-hidden text-foreground transition-[box-shadow,backdrop-filter] duration-300",
         glass
@@ -151,11 +159,8 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
       )}
     >
       <div
-        className={cn(
-          landingShell,
-          "relative flex min-w-0 items-center justify-between gap-2 overflow-hidden transition-[height] duration-200 sm:gap-3",
-          !app && scrolled ? "h-[3.25rem]" : "h-14 sm:h-[3.75rem]",
-        )}
+        data-scrolled={!app && scrolled ? "true" : undefined}
+        className={cn(landingShell, "marketing-nav-bar relative")}
       >
         <BrandWordmarkLink
           href={app ? ROUTES.home : "#markets"}
@@ -163,28 +168,25 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           variant="nav"
           priority
           openInNewTab={app}
-          className="relative z-[2] min-w-0 flex-1 overflow-hidden pr-1"
+          className="relative z-[2] shrink-0"
         />
 
         {!app ? (
-          <nav
-            className="absolute left-1/2 z-[1] hidden max-w-[min(calc(100vw-11rem),52rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden"
-            aria-label="Page sections"
-          >
+          <nav className="marketing-nav-center" aria-label="Page sections">
             {LANDING_NAV_SECTIONS.map((item) => renderSectionLink(item, navLinkClass))}
           </nav>
         ) : null}
 
-        <div className="relative z-[2] ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1.5 sm:gap-2">
+        <div className="relative z-[2] ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1 sm:gap-1.5 lg:gap-2">
           {rightActions}
           {appendActions ? (
-            <span className="ml-0.5 flex shrink-0 items-center gap-2 border-l border-white/[0.08] pl-2 sm:pl-2.5">
+            <span className="ml-0.5 hidden shrink-0 items-center gap-2 border-l border-white/[0.08] pl-2 sm:flex sm:pl-2.5">
               {appendActions}
             </span>
           ) : null}
           <button
             type="button"
-            className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-sky-500/15 bg-sky-500/[0.06] text-foreground transition hover:border-sky-400/30 hover:bg-sky-500/10 lg:hidden"
+            className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-sky-500/15 bg-sky-500/[0.06] text-foreground transition hover:border-sky-400/30 hover:bg-sky-500/10 sm:size-10 lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
@@ -196,7 +198,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
 
       <div
         className={cn(
-          "border-t border-sky-500/10 bg-[hsl(225_32%_11%_/_0.95)] backdrop-blur-xl lg:hidden",
+          "max-h-[min(85dvh,32rem)] overflow-y-auto border-t border-sky-500/10 bg-[hsl(225_32%_11%_/_0.98)] backdrop-blur-xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >
@@ -205,7 +207,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
             renderSectionLink(
               item,
               cn(
-                "rounded-xl px-3 py-2.5 text-sm font-medium transition",
+                "rounded-xl px-3 py-3 text-sm font-medium transition",
                 "text-slate-300 hover:bg-sky-500/[0.08] hover:text-white",
               ),
               () => setOpen(false),

@@ -14,6 +14,7 @@ import { WhyTraditionalVisual } from "@/widgets/landing/sections/why-traditional
 import {
   landingBandInner,
   landingEyebrow,
+  landingSectionLabel,
   landingEyebrowAccent,
   landingH2,
   landingLead,
@@ -45,7 +46,7 @@ export function WhyOraklyMerged() {
         aria-hidden
       />
       <LandingReveal className={landingBandInner}>
-        <p className={landingEyebrow}>Why Orakly</p>
+        <p className={landingSectionLabel}>Why Orakly</p>
         <h2 className={landingH2}>
           Built for <span className="text-violet-200/95">crypto-native questions</span> — not generic catalogs
         </h2>

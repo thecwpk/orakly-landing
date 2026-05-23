@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { roadmapQuarters } from "@/widgets/landing/sections/marketing-landing-content";
 import {
   landingBody,
-  landingEyebrow,
+  landingSectionLabel,
   landingH2,
   landingH3,
   landingLead,
@@ -38,7 +38,7 @@ export function RoadmapTimeline() {
         aria-hidden
       />
       <LandingReveal className={cn(landingBandInner, "relative")}>
-        <p className={cn(landingEyebrow, "text-amber-200/70")}>Roadmap</p>
+        <p className={cn(landingSectionLabel, "text-amber-200/85")}>Roadmap</p>
         <h2 className={landingH2}>What ships, when.</h2>
         <p className={landingLead}>
           Quarters, not vibes. The closer the lane, the more committed the scope.

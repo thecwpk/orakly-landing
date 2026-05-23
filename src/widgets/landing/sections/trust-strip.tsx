@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { trustPillars } from "@/widgets/landing/sections/marketing-landing-content";
 import {
   landingBody,
-  landingEyebrow,
+  landingSectionLabel,
   landingH2,
   landingH3,
   landingLead,
@@ -43,7 +43,7 @@ export function TrustStrip() {
         aria-hidden
       />
       <LandingReveal className={cn(landingBandInner, "relative")}>
-        <p className={cn(landingEyebrow, "text-cyan-200/55")}>Trust & security</p>
+        <p className={cn(landingSectionLabel, "text-cyan-200/80")}>Trust & security</p>
         <h2 className={landingH2}>On-chain settlement. Rules in the open.</h2>
         <p className={landingLead}>
           Every market ships with explicit resolution criteria and on-chain settlement.
@@ -82,7 +82,7 @@ export function TrustStrip() {
           <ShieldAlert className="mt-0.5 size-5 shrink-0 text-amber-300" aria-hidden />
           <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
             <span className="font-semibold text-foreground">Risk note.</span> Prediction markets involve loss of capital.
-            Prices are volatile. Availability varies by jurisdiction. This site is not legal, tax, or financial advice.
+            Prices are volatile. Availability varies by jurisdiction. Not Financial advice.
           </p>
         </div>
       </LandingReveal>

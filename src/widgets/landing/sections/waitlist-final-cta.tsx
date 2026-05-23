@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
 import { WaitlistForm } from "@/widgets/landing/sections/waitlist-form";
 import {
-  landingEyebrow,
+  landingSectionLabel,
   landingH2,
   landingLead,
   landingBandInner,
@@ -30,7 +30,7 @@ export function WaitlistFinalCta() {
       />
       <LandingReveal className={cn(landingBandInner, "relative")}>
         <div className="mx-auto max-w-2xl text-center">
-          <p className={landingEyebrow}>Updates</p>
+          <p className={landingSectionLabel}>Updates</p>
           <h2 className={cn(landingH2, "mt-3")}>Stay close to what ships next.</h2>
           <p className={cn(landingLead, "mx-auto")}>
             Add your email for product announcements and roadmap notes. We send only when there is something worth

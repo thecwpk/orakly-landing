@@ -3,6 +3,9 @@
 import { Layers } from "lucide-react";
 
 import { BrandWordmarkLink } from "@/shared/ui";
+import { DextoolsLogo } from "@/shared/ui/dextools-logo";
+import { TelegramLogo } from "@/shared/ui/telegram-logo";
+import { XLogo } from "@/shared/ui/x-logo";
 import { cn } from "@/lib/utils";
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
 import { LANDING_EXTERNAL_LINKS } from "@/widgets/landing/lib/landing-external-links";
@@ -20,8 +23,9 @@ const PRODUCT_LINKS = [
 ] as const;
 
 const COMMUNITY_LINKS = [
-  { label: "X", href: LANDING_EXTERNAL_LINKS.twitter, external: true },
-  { label: "Dextool", href: LANDING_EXTERNAL_LINKS.dextools, external: true },
+  { label: "X", href: LANDING_EXTERNAL_LINKS.twitter, external: true, Icon: XLogo },
+  { label: "Telegram", href: LANDING_EXTERNAL_LINKS.telegram, external: true, Icon: TelegramLogo },
+  { label: "DexTools", href: LANDING_EXTERNAL_LINKS.dextools, external: true, Icon: DextoolsLogo },
   { label: "Email updates", href: "#early-access", external: false },
 ] as const;
 
@@ -116,16 +120,20 @@ export function MarketingLandingFooter() {
           <div className="lg:col-span-4">
             <p className={cn(landingEyebrow, "text-violet-300/45")}>Community</p>
             <nav className="mt-4 flex flex-col gap-2" aria-label="Footer social">
-              {COMMUNITY_LINKS.map((item) =>
-                item.external ? (
-                  <a key={item.label} href={item.href} className={footerLinkClass} {...NEW_TAB}>
+              {COMMUNITY_LINKS.map((item) => {
+                const className = cn(footerLinkClass, "group inline-flex items-center gap-2.5");
+                const icon = "Icon" in item ? <item.Icon className="!size-4" /> : null;
+
+                return item.external ? (
+                  <a key={item.label} href={item.href} className={className} {...NEW_TAB}>
+                    {icon}
                     {item.label}
                   </a>
                 ) : (
                   <a
                     key={item.label}
                     href={item.href}
-                    className={footerLinkClass}
+                    className={className}
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToHash(item.href);
@@ -133,8 +141,8 @@ export function MarketingLandingFooter() {
                   >
                     {item.label}
                   </a>
-                ),
-              )}
+                );
+              })}
             </nav>
           </div>
         </div>

@@ -37,19 +37,12 @@ export function MarketingLandingHero() {
       />
 
       <div className={cn(landingShell, landingHeroY, "relative")}>
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-background/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground shadow-[0_0_0_1px_color-mix(in_srgb,var(--yes)_12%,transparent),0_12px_40px_-28px_rgba(0,0,0,0.65)] backdrop-blur-md">
-          <span className="relative inline-flex size-1.5">
-            <span className="motion-safe:animate-ping absolute inline-flex size-full rounded-full bg-yes opacity-40" />
-            <span className="relative inline-flex size-1.5 rounded-full bg-yes shadow-[0_0_14px_color-mix(in_srgb,var(--yes)_45%,transparent)]" />
-          </span>
-          Live · On-chain
-        </div>
-
-        <div className="relative mt-6 flex flex-col gap-8 sm:gap-10 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-12">
+        <div className="relative flex flex-col gap-8 sm:gap-10 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-12">
           <div className="min-w-0">
-            <h1 className={landingDisplay}>Trade conviction with transparent on-chain odds.</h1>
+            <h1 className={landingDisplay}>The Prediction Market for Crypto Attention.</h1>
             <p className={cn(landingLead, "text-foreground")}>
-              On-chain prediction markets on crypto, macro, and tech.
+              Trade meme coins, narratives, and market conviction through transparent on-chain markets
+              built for crypto-native traders.
             </p>
 
             <MarketingLandingCtas className="mt-7" />
