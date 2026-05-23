@@ -54,7 +54,7 @@ export function BrandWordmarkLink({
       onClick={onClick}
       className={cn(
         "group flex shrink-0 items-center transition duration-200 hover:opacity-[0.98]",
-        nav ? "gap-3 sm:gap-3.5" : "gap-2.5 sm:gap-3",
+        nav ? "gap-2.5 min-w-0 sm:gap-3.5" : "gap-2.5 sm:gap-3",
         className,
       )}
       aria-label="Orakly Market home"
@@ -116,11 +116,11 @@ function NavGlyphFallback() {
 function BrandTitle({ nav }: { nav: boolean }) {
   if (nav) {
     return (
-      <span className="hidden min-w-0 flex-col justify-center leading-[1.12] lg:flex">
-        <span className="font-display text-[1.05rem] font-bold tracking-[-0.03em] text-white sm:text-lg">
+      <span className="flex min-w-0 flex-col justify-center leading-[1.1]">
+        <span className="truncate font-display text-[0.9rem] font-bold tracking-[-0.03em] text-white sm:text-[1.05rem] lg:text-lg">
           Orakly Market
         </span>
-        <span className="mt-1 hidden font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75 lg:block sm:text-[11px]">
+        <span className="mt-0.5 truncate font-mono text-[8px] font-semibold uppercase tracking-[0.16em] text-white/70 sm:mt-1 sm:text-[10px] sm:tracking-[0.2em] lg:text-[11px]">
           On-chain predictions
         </span>
       </span>

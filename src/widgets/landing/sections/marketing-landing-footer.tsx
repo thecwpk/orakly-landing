@@ -20,7 +20,7 @@ const PRODUCT_LINKS = [
 ] as const;
 
 const COMMUNITY_LINKS = [
-  { label: "X / Twitter", href: LANDING_EXTERNAL_LINKS.twitter, external: true },
+  { label: "X", href: LANDING_EXTERNAL_LINKS.twitter, external: true },
   { label: "Dextool", href: LANDING_EXTERNAL_LINKS.dextools, external: true },
   { label: "Email updates", href: "#early-access", external: false },
 ] as const;

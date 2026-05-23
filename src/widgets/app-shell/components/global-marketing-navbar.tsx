@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { BrandWordmarkLink } from "@/shared/ui";
+import { XLogo } from "@/shared/ui/x-logo";
 import { ROUTES } from "@/shared/constants/routes";
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
 import { LANDING_EXTERNAL_LINKS } from "@/widgets/landing/lib/landing-external-links";
@@ -45,8 +46,19 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
   );
 
   const externalLinkClass = cn(
-    "marketing-nav-signin hidden lg:inline-flex",
+    "marketing-nav-signin hidden size-10 shrink-0 p-0 lg:inline-flex",
     glass && "text-[var(--text-muted)]",
+  );
+
+  const xLink = (
+    <a
+      href={LANDING_EXTERNAL_LINKS.twitter}
+      className={externalLinkClass}
+      aria-label="X (formerly Twitter)"
+      {...NEW_TAB}
+    >
+      <XLogo />
+    </a>
   );
 
   const renderSectionLink = (
@@ -79,9 +91,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     </>
   ) : (
     <>
-      <a href={LANDING_EXTERNAL_LINKS.twitter} className={externalLinkClass} {...NEW_TAB}>
-        Twitter
-      </a>
+      {xLink}
       <a href={LANDING_EXTERNAL_LINKS.dextools} className={externalLinkClass} {...NEW_TAB}>
         Dextool
       </a>
@@ -104,11 +114,12 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
     <>
       <a
         href={LANDING_EXTERNAL_LINKS.twitter}
-        className="marketing-nav-signin justify-center py-2.5"
+        className="marketing-nav-signin inline-flex items-center justify-center py-2.5"
         onClick={() => setOpen(false)}
+        aria-label="X (formerly Twitter)"
         {...NEW_TAB}
       >
-        Twitter
+        <XLogo className="size-5" />
       </a>
       <a
         href={LANDING_EXTERNAL_LINKS.dextools}
@@ -152,7 +163,7 @@ export function GlobalMarketingNavbar({ variant, appendActions, chrome = "defaul
           variant="nav"
           priority
           openInNewTab={app}
-          className="relative z-[2] min-w-0 shrink"
+          className="relative z-[2] min-w-0 flex-1 overflow-hidden pr-1"
         />
 
         {!app ? (
