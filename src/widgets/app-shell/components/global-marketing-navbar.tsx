@@ -31,7 +31,7 @@ function SocialIconLinks({ className }: { className?: string }) {
     <>
       <a
         href={LANDING_EXTERNAL_LINKS.twitter}
-        className={cn("marketing-nav-social-btn", className)}
+        className={cn("marketing-nav-social-btn group", className)}
         aria-label="X (formerly Twitter)"
         {...NEW_TAB}
       >
@@ -39,7 +39,7 @@ function SocialIconLinks({ className }: { className?: string }) {
       </a>
       <a
         href={LANDING_EXTERNAL_LINKS.telegram}
-        className={cn("marketing-nav-social-btn", className)}
+        className={cn("marketing-nav-social-btn group", className)}
         aria-label="Telegram"
         {...NEW_TAB}
       >
@@ -47,7 +47,7 @@ function SocialIconLinks({ className }: { className?: string }) {
       </a>
       <a
         href={LANDING_EXTERNAL_LINKS.dextools}
-        className={cn("marketing-nav-social-btn", className)}
+        className={cn("marketing-nav-social-btn group", className)}
         aria-label="DexTools"
         {...NEW_TAB}
       >

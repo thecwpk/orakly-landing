@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Telegram mark — vector, matches nav sky accent. */
+/** Telegram mark — muted whitish, readable on dark nav. */
 export function TelegramLogo({ className }: { className?: string }) {
   return (
     <svg
@@ -8,7 +8,7 @@ export function TelegramLogo({ className }: { className?: string }) {
       role="img"
       aria-hidden
       className={cn(
-        "size-[1.125rem] shrink-0 text-sky-400/90 sm:size-5 transition-colors duration-200 group-hover:text-sky-300",
+        "size-[1.125rem] shrink-0 text-slate-200/82 sm:size-5 transition-colors duration-200 group-hover:text-white/95",
         className,
       )}
       fill="currentColor"

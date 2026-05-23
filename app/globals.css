@@ -423,8 +423,8 @@
 
   .marketing-nav-social-btn:hover {
     transform: translateY(-1px);
-    background: hsl(198 70% 55% / 0.14);
-    box-shadow: 0 4px 14px -4px hsl(198 80% 50% / 0.35);
+    background: hsl(210 40% 94% / 0.07);
+    box-shadow: 0 4px 14px -4px hsl(210 50% 70% / 0.12);
   }
 
   .marketing-nav-social-btn:active {

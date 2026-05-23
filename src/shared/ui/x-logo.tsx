@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** X mark — white on dark nav. */
+/** X mark — soft white on dark surfaces. */
 export function XLogo({ className }: { className?: string }) {
   return (
     <svg
@@ -8,7 +8,7 @@ export function XLogo({ className }: { className?: string }) {
       role="img"
       aria-hidden
       className={cn(
-        "size-[1.125rem] shrink-0 text-white sm:size-5 transition-opacity duration-200 group-hover:opacity-100",
+        "size-[1.125rem] shrink-0 text-slate-200/85 sm:size-5 transition-colors duration-200 group-hover:text-white/95",
         className,
       )}
       fill="currentColor"
