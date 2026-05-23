@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-sans);
+  --color-foreground: hsl(var(--foreground));
+  --color-background: hsl(var(--background));
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-yes: var(--yes);
+  --color-no: var(--no);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: 228 36% 12%;
+  --foreground: 210 40% 98%;
+  --primary: oklch(0.985 0.003 260);
+  --primary-foreground: oklch(0.165 0.045 268);
+  --muted: oklch(0.255 0.034 267);
+  --muted-foreground: oklch(0.72 0.018 265);
+  --border: oklch(1 0 0 / 0.12);
+  --yes: #3ecf8e;
+  --no: #fb7185;
+}
+
+@layer utilities {
+  .marketing-header-shell,
+  .marketing-nav-shell {
+    position: relative;
+    background-color: hsl(225 32% 11% / 0.88);
+    backdrop-filter: blur(18px) saturate(1.25);
+    border-bottom: 1px solid hsl(220 38% 42% / 0.14);
+    box-shadow:
+      inset 0 1px 0 hsl(210 50% 70% / 0.08),
+      0 4px 24px -12px hsl(228 50% 8% / 0.5);
+  }
+
+  .marketing-nav-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(198 80% 62% / 0.35) 35%,
+      hsl(260 60% 65% / 0.25) 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  @supports (backdrop-filter: blur(18px)) {
+    .marketing-header-shell,
+    .marketing-nav-shell {
+      background-color: hsl(225 34% 12% / 0.78);
+    }
+  }
+
+  .marketing-brand-mark {
+    border: 1px solid hsl(210 50% 60% / 0.12);
+    background: linear-gradient(145deg, hsl(228 28% 18% / 0.95) 0%, hsl(232 32% 14% / 0.98) 100%);
+    box-shadow:
+      inset 0 1px 0 hsl(210 60% 80% / 0.1),
+      0 0 24px -8px hsl(198 70% 50% / 0.35);
+  }
+
+  .marketing-nav-signin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: hsl(210 25% 78%);
+    border: 1px solid hsl(220 30% 50% / 0.15);
+    background: hsl(228 25% 16% / 0.5);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .marketing-nav-signin:hover {
+    color: hsl(210 40% 96%);
+    border-color: hsl(198 50% 55% / 0.28);
+    background: hsl(220 30% 20% / 0.65);
+  }
+
+  .marketing-nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: hsl(228 45% 8%);
+    background-image: linear-gradient(
+      135deg,
+      hsl(186 85% 62%) 0%,
+      hsl(158 70% 48%) 55%,
+      hsl(172 75% 42%) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.35),
+      0 0 28px -6px hsl(165 80% 45% / 0.45);
+    transition:
+      filter 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.15s ease;
+  }
+
+  .marketing-nav-cta:hover {
+    filter: brightness(1.06);
+  }
+
+  .marketing-nav-cta:active {
+    transform: scale(0.98);
+  }
+
+  .marketing-footer-shell {
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, hsl(232 42% 22% / 0.35), transparent 58%),
+      radial-gradient(ellipse 50% 40% at 100% 100%, hsl(278 30% 18% / 0.15), transparent 55%),
+      linear-gradient(180deg, hsl(228 28% 13%) 0%, hsl(225 32% 10%) 100%);
+  }
+
+  .marketing-footer-bar {
+    border-top: 1px solid hsl(220 35% 45% / 0.12);
+  }
+
+  .marketing-footer-pill:hover {
+    background: hsl(220 30% 22% / 0.45);
+  }
+
+  .marketing-footer-link:hover {
+    transform: translateX(2px);
+  }
+
+  .marketing-landing-canvas {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(ellipse 120% 75% at 50% -18%, hsl(232 48% 24% / 0.42), transparent 58%),
+      radial-gradient(ellipse 55% 50% at 96% 12%, hsl(278 36% 22% / 0.18), transparent 52%),
+      radial-gradient(ellipse 50% 48% at 4% 35%, hsl(205 42% 18% / 0.16), transparent 50%);
+  }
+
+  .glass-panel-strong {
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsl(var(--foreground) / 0.12);
+    background-color: hsl(var(--background) / 0.38);
+    box-shadow:
+      0 10px 36px -10px rgb(0 0 0 / 0.55),
+      inset 0 1px 0 hsl(var(--foreground) / 0.06);
+    backdrop-filter: blur(42px);
+  }
+
+  .neon-edge-cyan {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.15),
+      0 0 24px -8px rgba(34, 211, 238, 0.35);
+  }
+
+  .neon-edge-violet {
+    box-shadow:
+      0 0 0 1px rgba(167, 139, 250, 0.12),
+      0 0 28px -10px rgba(139, 92, 246, 0.35);
+  }
+
+  .neon-edge-rose {
+    box-shadow:
+      0 0 0 1px rgba(251, 113, 133, 0.12),
+      0 0 24px -8px rgba(244, 63, 94, 0.28);
+  }
+}
