@@ -2,11 +2,189 @@
  * Orakly landing copy — rich sections without repeating the same idea three ways.
  */
 
-/** Qualitative proof strip — avoids fixed counts that change as listings grow. */
-export const heroProofStats = [
-  { label: "Markets", value: "Live" },
-  { label: "Liquidity", value: "Deep" },
-  { label: "Settlement", value: "On-chain" },
+export const narrativeWarsIntro = {
+  headline: "Markets move on narratives before they move on price.",
+  body: "Orakly turns live crypto attention into tradable battles between the narratives shaping the market.",
+  closer: "Trade narratives before the market fully reacts.",
+} as const;
+
+export const narrativeWarsBattles = [
+  {
+    id: "btc-eth",
+    left: "BTC",
+    right: "ETH",
+    question: "Which ecosystem is leading this cycle?",
+    leftAccent: "from-amber-400/25 via-amber-500/10 to-transparent",
+    rightAccent: "from-sky-400/25 via-sky-500/10 to-transparent",
+    ring: "ring-amber-400/20",
+  },
+  {
+    id: "ai-memes",
+    left: "AI Agents",
+    right: "Memecoins",
+    question: "Where is attention flowing next?",
+    leftAccent: "from-violet-400/25 via-violet-500/10 to-transparent",
+    rightAccent: "from-fuchsia-400/20 via-rose-500/10 to-transparent",
+    ring: "ring-violet-400/20",
+  },
+  {
+    id: "sol-eth",
+    left: "Solana",
+    right: "Ethereum",
+    question: "Which community is gaining momentum?",
+    leftAccent: "from-cyan-400/25 via-teal-500/10 to-transparent",
+    rightAccent: "from-indigo-400/22 via-violet-500/10 to-transparent",
+    ring: "ring-cyan-400/20",
+  },
+] as const;
+
+export const narrativeMarketShowcases = [
+  {
+    id: "btc-dominance-narrative",
+    slug: "btc-dominance-narrative",
+    title: "BTC Dominance Narrative",
+    category: "Dominance",
+    flow: "Capital rotating into BTC",
+    phase: "Risk-off accumulation cycle",
+    metrics: [
+      {
+        label: "BTC Narrative Strength",
+        value: "72",
+        signal: "fire",
+        trend: "up",
+        trendNote: "rising",
+      },
+      {
+        label: "ETH Narrative Strength",
+        value: "61",
+        signal: "bolt",
+        trend: "down",
+        trendNote: "cooling",
+      },
+    ],
+  },
+  {
+    id: "ai-agent-supercycle",
+    slug: "ai-agent-supercycle",
+    title: "AI Agent Supercycle Narrative",
+    category: "Supercycle",
+    flow: "Attention shifting toward AI agents",
+    phase: "Early supercycle expansion",
+    metrics: [
+      {
+        label: "AI Narrative Strength",
+        value: "81",
+        signal: "fire",
+        trend: "up",
+        trendNote: "accelerating",
+      },
+      {
+        label: "Memecoin Narrative Strength",
+        value: "66",
+        signal: "bolt",
+        trend: "down",
+        trendNote: "cooling",
+      },
+    ],
+  },
+  {
+    id: "memecoin-attention-cycle",
+    slug: "memecoin-attention-cycle",
+    title: "Memecoin Attention Cycle",
+    category: "Memes",
+    flow: "Retail attention re-entering meme cycle",
+    phase: "Early expansion phase",
+    metrics: [
+      { label: "PEPE Viral Pressure", value: "88", signal: "fire", trend: "up", trendNote: "rising" },
+      { label: "DOGE Narrative Strength", value: "64", signal: "bolt", trend: "flat", trendNote: "stable" },
+      {
+        label: "New Meme Velocity",
+        value: "79",
+        signal: "fire",
+        trend: "up",
+        trendNote: "rising",
+      },
+    ],
+  },
+  {
+    id: "ethereum-utility-narrative",
+    slug: "ethereum-utility-narrative",
+    title: "Ethereum Utility Narrative",
+    category: "Infrastructure",
+    flow: "Transitioning into infrastructure narrative",
+    phase: "Consolidation to maturity shift",
+    metrics: [
+      {
+        label: "ETH Narrative Strength",
+        value: "64",
+        signal: "bolt",
+        trend: "flat",
+        trendNote: "stable",
+      },
+      {
+        label: "ETF Narrative Strength",
+        value: "76",
+        signal: "fire",
+        trend: "up",
+        trendNote: "rising",
+      },
+    ],
+  },
+  {
+    id: "solana-execution-narrative",
+    slug: "solana-execution-narrative",
+    title: "Solana Execution Narrative",
+    category: "Execution",
+    flow: "Consumer + app-layer rotation into Solana",
+    phase: "Growth acceleration cycle",
+    metrics: [
+      {
+        label: "SOL Narrative Strength",
+        value: "77",
+        signal: "fire",
+        trend: "up",
+        trendNote: "rising",
+      },
+      {
+        label: "App Layer Narrative Strength",
+        value: "82",
+        signal: "fire",
+        trend: "up",
+        trendNote: "accelerating",
+      },
+    ],
+  },
+  {
+    id: "rwa-institutional-narrative",
+    slug: "rwa-institutional-narrative",
+    title: "RWA Institutional Narrative",
+    category: "Institutional",
+    flow: "Capital entering real-world asset narrative",
+    phase: "Early institutional adoption phase",
+    metrics: [
+      {
+        label: "RWA Narrative Strength",
+        value: "69",
+        signal: "bolt",
+        trend: "up",
+        trendNote: "gradual",
+      },
+      {
+        label: "Institutional Flow Strength",
+        value: "71",
+        signal: "fire",
+        trend: "up",
+        trendNote: "rising",
+      },
+    ],
+  },
+] as const;
+
+export const narrativeWarsTrack = [
+  { id: "attention", label: "Attention shifts" },
+  { id: "momentum", label: "Narrative momentum" },
+  { id: "conviction", label: "Community conviction" },
+  { id: "sentiment", label: "Market sentiment changes" },
 ] as const;
 
 export const whyOraklyCells = [
@@ -164,7 +342,6 @@ export const roadmapPhases: readonly RoadmapPhase[] = [
       "Narrative Wars",
       "Prediction markets",
       "Attention indicators",
-      "Wallet connection",
     ],
     kpi: "Users repeatedly participate in battles.",
   },

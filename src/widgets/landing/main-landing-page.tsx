@@ -11,7 +11,7 @@ export function MainLandingPage() {
         Skip to main content
       </a>
       <MarketingNavbar chrome="default" />
-      <main id="main" className="w-full max-w-none pb-8 pt-0 sm:pb-10">
+      <main id="main" className="w-full min-w-0 max-w-full overflow-x-clip pb-8 pt-0 sm:pb-10">
         <MarketingLanding />
       </main>
     </div>

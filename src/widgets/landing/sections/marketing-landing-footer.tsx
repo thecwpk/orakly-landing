@@ -1,7 +1,5 @@
 "use client";
 
-import { Layers } from "lucide-react";
-
 import { BrandWordmarkLink } from "@/shared/ui";
 import { DextoolsLogo } from "@/shared/ui/dextools-logo";
 import { TelegramLogo } from "@/shared/ui/telegram-logo";
@@ -30,6 +28,7 @@ const COMMUNITY_LINKS = [
 ] as const;
 
 const SITEMAP_LINKS = [
+  { label: "Narrative Wars", href: "#narrative-wars" },
   { label: "Live markets", href: "#live-markets" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Why Orakly", href: "#why" },
@@ -77,15 +76,6 @@ export function MarketingLandingFooter() {
               On-chain prediction markets across crypto, macro, sports, and tech. Transparent rules, stablecoin rails,
               settlement you can verify.
             </p>
-            <div className="mt-5 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/20 bg-sky-500/[0.07] px-3 py-1 text-[11px] font-medium text-sky-200/90">
-                <Layers className="size-3.5 shrink-0 opacity-80" aria-hidden />
-                Multi-network
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                Stablecoin-native
-              </span>
-            </div>
           </div>
 
           <div className="lg:col-span-3">

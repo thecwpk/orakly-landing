@@ -1,4 +1,4 @@
-import { CheckCircle2, Layers, ShieldAlert } from "lucide-react";
+import { CheckCircle2, ShieldAlert } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { trustPillars } from "@/widgets/landing/sections/marketing-landing-content";
@@ -17,10 +17,7 @@ import { LandingReveal } from "@/widgets/landing/sections/marketing-landing-layo
  * Trust + security strip — fixes audit gap #11 (trust holes).
  *
  * Shipped surface:
- *   - Multi-network positioning (no single-chain lock-in in copy).
- *   - Audit-pending chip — honest signal that supersedes "audit surface"
- *     branding without showing nothing.
- *   - 4 trust pillars from `trustPillars`.
+ *   - Trust pillars from `trustPillars`.
  *   - Inline risk note kept even though Terms/Privacy/Disclosure were
  *     skipped per the product owner, because the bare minimum of risk
  *     transparency cannot be skipped for a prediction market.
@@ -49,21 +46,7 @@ export function TrustStrip() {
           Every market ships with explicit resolution criteria and on-chain settlement.
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-500/[0.08] px-3.5 py-1.5 text-sm font-semibold text-sky-200">
-            <Layers className="size-4 shrink-0 opacity-90" aria-hidden />
-            Multi-chain ready
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-background/40 px-3.5 py-1.5 text-sm font-medium text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-amber-400/80" aria-hidden />
-            Audit: pending
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-background/40 px-3.5 py-1.5 text-sm font-medium text-muted-foreground">
-            Stablecoin collateral
-          </span>
-        </div>
-
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {trustPillars.map((p) => (
             <li
               key={p.title}

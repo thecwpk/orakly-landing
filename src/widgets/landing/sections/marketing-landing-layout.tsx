@@ -18,7 +18,7 @@ export function LandingShell({ children, className }: LandingShellProps) {
 }
 
 const reveal = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 1, y: 14 },
   show: {
     opacity: 1,
     y: 0,
@@ -40,7 +40,7 @@ export function LandingReveal({
   }
   return (
     <motion.div
-      className={className}
+      className={cn("w-full min-w-0 max-w-full", className)}
       variants={reveal}
       initial="hidden"
       whileInView="show"

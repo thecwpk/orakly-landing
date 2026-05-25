@@ -1,9 +1,9 @@
-import type { ShowcaseMarket } from "@/lib/market";
 import { ArrowRight } from "lucide-react";
 
 import { ComingSoonButton } from "@/widgets/landing/components/coming-soon-button";
-import { DenseMarketCard } from "@/widgets/landing/components/dense-market-card";
+import { NarrativeMarketCard } from "@/widgets/landing/components/narrative-market-card";
 import { cn } from "@/lib/utils";
+import { narrativeMarketShowcases } from "@/widgets/landing/sections/marketing-landing-content";
 import {
   landingSectionLabel,
   landingH2,
@@ -12,86 +12,6 @@ import {
   landingSectionBand,
 } from "@/widgets/landing/sections/marketing-landing-rail";
 import { LandingReveal } from "@/widgets/landing/sections/marketing-landing-layout";
-
-/**
- * Curated 6-market preview baked at build time. The data is a static
- * mirror of `packages/database/prisma/seed.ts` so the landing surfaces
- * the same questions a freshly seeded DB serves through `/markets`.
- *
- * This is intentionally a server component — no client JS for a static
- * card grid. `DenseMarketCard` is "use client" because of the framer
- * `motion.article` reveal; the grid wrapper itself stays server-side.
- */
-const SHOWCASE_MARKETS: ReadonlyArray<ShowcaseMarket> = [
-  {
-    id: "btc-ath-q3-2026",
-    slug: "btc-ath-q3-2026",
-    title: "BTC to hit a new all-time high in Q3 2026?",
-    category: "Crypto",
-    volumeUsd: 9_800_000,
-    liquidityUsd: 2_100_000,
-    probability: 0.47,
-    closesAt: "2026-09-30T23:00:00.000Z",
-    status: "OPEN",
-  },
-  {
-    id: "fed-rate-cut-july-2026",
-    slug: "fed-rate-cut-july-2026",
-    title: "Will the Fed cut rates before July 2026?",
-    category: "Macro",
-    volumeUsd: 4_200_000,
-    liquidityUsd: 980_000,
-    probability: 0.61,
-    closesAt: "2026-07-15T23:00:00.000Z",
-    status: "OPEN",
-  },
-  {
-    id: "solana-etf-2026",
-    slug: "solana-etf-2026",
-    title: "Solana spot ETF approved in the US by end of 2026?",
-    category: "Crypto",
-    volumeUsd: 2_400_000,
-    liquidityUsd: 610_000,
-    probability: 0.38,
-    closesAt: "2026-12-31T23:00:00.000Z",
-    status: "OPEN",
-  },
-  {
-    id: "nvidia-5trillion-mcap-2026",
-    slug: "nvidia-5trillion-mcap-2026",
-    title: "NVDA market cap exceeds $5T intraday before 2027?",
-    category: "Macro",
-    volumeUsd: 6_100_000,
-    liquidityUsd: 1_400_000,
-    probability: 0.42,
-    closesAt: "2026-12-31T23:00:00.000Z",
-    status: "OPEN",
-  },
-  {
-    id: "new-stablecoin-act-us-2026",
-    slug: "new-stablecoin-act-us-2026",
-    title: "US passes federal stablecoin market-structure legislation in 2026?",
-    category: "Politics",
-    volumeUsd: 1_920_000,
-    liquidityUsd: 480_000,
-    probability: 0.36,
-    closesAt: "2026-12-31T23:00:00.000Z",
-    status: "OPEN",
-  },
-  {
-    id: "gpt5-pass-bar-exam",
-    slug: "gpt5-pass-bar-exam",
-    title: "Will a top LLM pass a bar-exam style benchmark at ≥90% before 2027?",
-    category: "Tech",
-    volumeUsd: 560_000,
-    liquidityUsd: 180_000,
-    probability: 0.72,
-    closesAt: "2026-12-01T23:00:00.000Z",
-    status: "OPEN",
-  },
-];
-
-const ACCENTS = ["cyan", "violet", "rose"] as const;
 
 export function LiveMarketsGrid() {
   return (
@@ -108,13 +28,14 @@ export function LiveMarketsGrid() {
         aria-hidden
       />
 
-      <LandingReveal className={cn(landingBandInner, "relative")}>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className={landingSectionLabel}>Live markets</p>
-            <h2 className={landingH2}>Real questions. Real odds.</h2>
+      <LandingReveal className={cn(landingBandInner, "relative w-full min-w-0 max-w-full")}>
+        <div className="flex min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <p className={landingSectionLabel}>Markets</p>
+            <h2 className={landingH2}>Narrative strength. Live flow.</h2>
             <p className={landingLead}>
-              A slice of what trades right now on Orakly. Prices reflect live order flow.
+              Six live narrative markets tracking attention, momentum, and capital flow across crypto. Strength
+              scores update as conviction moves on Orakly.
             </p>
           </div>
           <ComingSoonButton
@@ -126,10 +47,10 @@ export function LiveMarketsGrid() {
           </ComingSoonButton>
         </div>
 
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {SHOWCASE_MARKETS.map((m, i) => (
-            <li key={m.id} className="contents">
-              <DenseMarketCard market={m} accent={ACCENTS[i % ACCENTS.length]} index={i} />
+        <ul className="mt-8 grid w-full min-w-0 max-w-full list-none grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {narrativeMarketShowcases.map((market, i) => (
+            <li key={market.id} className="flex min-w-0 max-w-full">
+              <NarrativeMarketCard market={market} index={i} />
             </li>
           ))}
         </ul>
