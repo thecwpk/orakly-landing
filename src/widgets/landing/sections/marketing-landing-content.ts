@@ -47,20 +47,8 @@ export const narrativeMarketShowcases = [
     flow: "Capital rotating into BTC",
     phase: "Risk-off accumulation cycle",
     metrics: [
-      {
-        label: "BTC Narrative Strength",
-        value: "72",
-        signal: "fire",
-        trend: "up",
-        trendNote: "rising",
-      },
-      {
-        label: "ETH Narrative Strength",
-        value: "61",
-        signal: "bolt",
-        trend: "down",
-        trendNote: "cooling",
-      },
+      { label: "BTC strength", value: "72", signal: "fire", trend: "up" },
+      { label: "ETH strength", value: "61", signal: "bolt", trend: "down" },
     ],
   },
   {
@@ -71,20 +59,8 @@ export const narrativeMarketShowcases = [
     flow: "Attention shifting toward AI agents",
     phase: "Early supercycle expansion",
     metrics: [
-      {
-        label: "AI Narrative Strength",
-        value: "81",
-        signal: "fire",
-        trend: "up",
-        trendNote: "accelerating",
-      },
-      {
-        label: "Memecoin Narrative Strength",
-        value: "66",
-        signal: "bolt",
-        trend: "down",
-        trendNote: "cooling",
-      },
+      { label: "AI agents", value: "81", signal: "fire", trend: "up" },
+      { label: "Memecoins", value: "66", signal: "bolt", trend: "down" },
     ],
   },
   {
@@ -95,15 +71,8 @@ export const narrativeMarketShowcases = [
     flow: "Retail attention re-entering meme cycle",
     phase: "Early expansion phase",
     metrics: [
-      { label: "PEPE Viral Pressure", value: "88", signal: "fire", trend: "up", trendNote: "rising" },
-      { label: "DOGE Narrative Strength", value: "64", signal: "bolt", trend: "flat", trendNote: "stable" },
-      {
-        label: "New Meme Velocity",
-        value: "79",
-        signal: "fire",
-        trend: "up",
-        trendNote: "rising",
-      },
+      { label: "PEPE viral pressure", value: "88", signal: "fire", trend: "up" },
+      { label: "New meme velocity", value: "79", signal: "fire", trend: "up" },
     ],
   },
   {
@@ -114,20 +83,8 @@ export const narrativeMarketShowcases = [
     flow: "Transitioning into infrastructure narrative",
     phase: "Consolidation to maturity shift",
     metrics: [
-      {
-        label: "ETH Narrative Strength",
-        value: "64",
-        signal: "bolt",
-        trend: "flat",
-        trendNote: "stable",
-      },
-      {
-        label: "ETF Narrative Strength",
-        value: "76",
-        signal: "fire",
-        trend: "up",
-        trendNote: "rising",
-      },
+      { label: "ETH utility", value: "64", signal: "bolt", trend: "flat" },
+      { label: "ETF flows", value: "76", signal: "fire", trend: "up" },
     ],
   },
   {
@@ -138,20 +95,8 @@ export const narrativeMarketShowcases = [
     flow: "Consumer + app-layer rotation into Solana",
     phase: "Growth acceleration cycle",
     metrics: [
-      {
-        label: "SOL Narrative Strength",
-        value: "77",
-        signal: "fire",
-        trend: "up",
-        trendNote: "rising",
-      },
-      {
-        label: "App Layer Narrative Strength",
-        value: "82",
-        signal: "fire",
-        trend: "up",
-        trendNote: "accelerating",
-      },
+      { label: "SOL execution", value: "77", signal: "fire", trend: "up" },
+      { label: "App layer", value: "82", signal: "fire", trend: "up" },
     ],
   },
   {
@@ -162,20 +107,8 @@ export const narrativeMarketShowcases = [
     flow: "Capital entering real-world asset narrative",
     phase: "Early institutional adoption phase",
     metrics: [
-      {
-        label: "RWA Narrative Strength",
-        value: "69",
-        signal: "bolt",
-        trend: "up",
-        trendNote: "gradual",
-      },
-      {
-        label: "Institutional Flow Strength",
-        value: "71",
-        signal: "fire",
-        trend: "up",
-        trendNote: "rising",
-      },
+      { label: "RWA adoption", value: "69", signal: "bolt", trend: "up" },
+      { label: "Institutional flow", value: "71", signal: "fire", trend: "up" },
     ],
   },
 ] as const;

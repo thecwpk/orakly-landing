@@ -1,12 +1,34 @@
 "use client";
 
+import { ArrowDown, ArrowRight, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import type { NarrativeMarketMetric, NarrativeMarketShowcase } from "@/lib/market";
 
-const TREND_LABEL = { up: "Up", down: "Down", flat: "Flat" } as const;
-const SIGNAL_LABEL = { fire: "High", bolt: "Moderate" } as const;
+const TREND = {
+  up: {
+    label: "Up",
+    Icon: ArrowUp,
+    value: "text-yes",
+    pill: "border-yes/25 bg-yes/10 text-yes",
+    bar: "bg-yes",
+  },
+  down: {
+    label: "Down",
+    Icon: ArrowDown,
+    value: "text-no",
+    pill: "border-no/25 bg-no/10 text-no",
+    bar: "bg-no",
+  },
+  flat: {
+    label: "Flat",
+    Icon: ArrowRight,
+    value: "text-zinc-400",
+    pill: "border-white/10 bg-white/[0.04] text-zinc-400",
+    bar: "bg-zinc-500/70",
+  },
+} as const;
 
 function parseStrength(value: string): number | null {
   const n = Number.parseInt(value, 10);
@@ -15,52 +37,34 @@ function parseStrength(value: string): number | null {
 
 function MetricRow({ metric }: { metric: NarrativeMarketMetric }) {
   const strength = parseStrength(metric.value);
-  const trendColor =
-    metric.trend === "up" ? "text-yes"
-    : metric.trend === "down" ? "text-rose-300/90"
-    : "text-slate-400";
+  const trend = TREND[metric.trend];
+  const TrendIcon = trend.Icon;
 
   return (
-    <div className="space-y-1.5">
-      <div className="flex items-start justify-between gap-2">
-        <span className="text-[11px] leading-snug text-muted-foreground">{metric.label}</span>
-        <span className="flex shrink-0 flex-wrap items-center justify-end gap-1.5 text-right text-[11px] font-medium text-foreground">
-          <span className="tabular-nums">{metric.value}</span>
+    <div className="space-y-2">
+      <div className="flex items-center justify-between gap-3">
+        <span className="min-w-0 truncate text-xs text-muted-foreground">{metric.label}</span>
+        <div className="flex shrink-0 items-center gap-2">
+          <span className={cn("text-sm font-semibold tabular-nums", trend.value)}>{metric.value}</span>
           <span
             className={cn(
-              "rounded px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide",
-              metric.signal === "fire"
-                ? "bg-amber-500/15 text-amber-200/95"
-                : "bg-sky-500/15 text-sky-200/95",
+              "inline-flex items-center gap-0.5 rounded-md border px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+              trend.pill,
             )}
           >
-            {SIGNAL_LABEL[metric.signal]}
+            <TrendIcon className="size-2.5" strokeWidth={2.5} aria-hidden />
+            {trend.label}
           </span>
-          <span className={cn("font-semibold uppercase tracking-wide", trendColor)}>
-            {TREND_LABEL[metric.trend]}
-          </span>
-          {metric.trendNote ? (
-            <span className={cn("font-normal capitalize text-muted-foreground", trendColor)}>
-              {metric.trendNote}
-            </span>
-          ) : null}
-        </span>
+        </div>
       </div>
       {strength !== null && (
-        <div className="h-1 overflow-hidden rounded-full bg-zinc-800/80">
+        <div className="h-1 overflow-hidden rounded-full bg-zinc-800/90">
           <motion.div
-            className={cn(
-              "h-full rounded-full",
-              metric.trend === "up"
-                ? "bg-gradient-to-r from-cyan-500 to-emerald-400"
-                : metric.trend === "down"
-                  ? "bg-gradient-to-r from-rose-500/80 to-amber-400/60"
-                  : "bg-gradient-to-r from-slate-500 to-slate-400",
-            )}
+            className={cn("h-full rounded-full", trend.bar, metric.signal === "bolt" && "opacity-75")}
             initial={{ width: 0 }}
             whileInView={{ width: `${strength}%` }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.08 }}
+            transition={{ duration: 0.65, ease: "easeOut", delay: 0.06 }}
           />
         </div>
       )}
@@ -77,37 +81,38 @@ export function NarrativeMarketCard({
 }) {
   return (
     <motion.article
-      initial={{ opacity: 1, y: 10 }}
+      initial={{ opacity: 1, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.25) }}
-      className="glass-panel-strong group relative flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl border border-white/[0.08] p-4 transition-colors hover:border-white/[0.14] sm:p-5"
+      transition={{ duration: 0.32, delay: Math.min(index * 0.04, 0.2) }}
+      className="glass-panel-strong group relative flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl border border-white/[0.08] p-4 transition-colors hover:border-white/[0.12] sm:p-5"
     >
-
       <div className="relative z-[1] flex flex-1 flex-col">
-        <div className="flex flex-wrap items-start gap-2">
-          <span className="rounded-full bg-white/6 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-zinc-400 ring-1 ring-white/10">
+        <div className="flex items-center justify-between gap-2">
+          <span className="rounded-full bg-white/[0.05] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-zinc-400 ring-1 ring-white/[0.08]">
             {market.category}
           </span>
-          <span className="text-[10px] text-zinc-500">OPEN</span>
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
+            <span className="size-1.5 rounded-full bg-yes shadow-[0_0_6px_color-mix(in_srgb,var(--yes)_55%,transparent)]" aria-hidden />
+            Live
+          </span>
         </div>
 
-        <h3 className="mt-2 text-sm font-semibold leading-snug text-zinc-100">{market.title}</h3>
+        <h3 className="mt-2.5 text-[15px] font-semibold leading-snug text-zinc-100">{market.title}</h3>
 
-        <div className="mt-3 flex min-h-[7.5rem] flex-col justify-center gap-3 border-t border-white/[0.06] pt-3">
+        <div className="mt-4 flex flex-col gap-3.5 border-t border-white/[0.06] pt-4">
           {market.metrics.map((metric) => (
             <MetricRow key={metric.label} metric={metric} />
           ))}
         </div>
 
-        <div className="mt-auto space-y-2 border-t border-white/[0.06] pt-3">
-          <p className="text-[11px] leading-relaxed text-muted-foreground">
-            <span className="font-medium text-zinc-400">Flow:</span> {market.flow}
-          </p>
-          <p className="text-[11px] leading-relaxed text-muted-foreground">
-            <span className="font-medium text-zinc-400">Phase:</span> {market.phase}
-          </p>
-        </div>
+        <p className="mt-4 border-t border-white/[0.06] pt-3.5 text-xs leading-relaxed text-zinc-500">
+          {market.flow}
+          <span className="mx-1.5 text-zinc-600" aria-hidden>
+            ·
+          </span>
+          {market.phase}
+        </p>
       </div>
     </motion.article>
   );
