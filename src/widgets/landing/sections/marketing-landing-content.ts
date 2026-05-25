@@ -139,40 +139,102 @@ export const trustPillars = [
   },
 ] as const;
 
-export const roadmapQuarters = [
+export type RoadmapPhaseStatus = "Shipping" | "Next" | "Planned" | "Vision";
+
+export type RoadmapPhase = {
+  id: string;
+  phase: string;
+  name: string;
+  subtitle?: string;
+  status: RoadmapPhaseStatus;
+  goal?: string;
+  features?: readonly string[];
+  build?: readonly string[];
+  kpi?: string;
+};
+
+export const roadmapPhases: readonly RoadmapPhase[] = [
   {
-    quarter: "Now",
+    id: "mvp",
+    phase: "Phase 1",
+    name: "MVP",
     status: "Shipping",
-    items: [
-      { title: "Live market catalog", note: "macro, crypto, politics, sports, tech, science" },
-      { title: "On-chain settlement", note: "stablecoin collateral, verifiable outcomes" },
+    goal: "Validate narrative trading.",
+    features: [
+      "Narrative Wars",
+      "Prediction markets",
+      "Attention indicators",
+      "Wallet connection",
     ],
+    kpi: "Users repeatedly participate in battles.",
   },
   {
-    quarter: "Q3 2026",
+    id: "intelligence",
+    phase: "Phase 2",
+    name: "Intelligence Layer",
+    subtitle: "After traction",
     status: "Next",
-    items: [
-      { title: "Narrative indexes", note: "bundle markets into themes" },
-      { title: "Mobile-first PWA", note: "no install, fast trade" },
+    build: [
+      "Attention Heatmap",
+      "Trending sectors",
+      "Narrative flow",
+      "Narrative Velocity & momentum scoring",
+      "Better analytics — battle insights & attention charts",
+      "Mobile optimization",
     ],
   },
   {
-    quarter: "Q4 2026",
+    id: "conviction",
+    phase: "Phase 3",
+    name: "Conviction Layer",
     status: "Planned",
-    items: [
-      { title: "Community-listed markets", note: "permissionless creation flow" },
-      { title: "Reputation & leaderboards", note: "on-chain accuracy signal" },
+    build: [
+      "Conviction Profiles",
+      "Belief tracking",
+      "Prediction accuracy",
+      "Wallet behavior",
+      "Reputation system",
+      "Early trend spotters",
+      "Leaderboard",
+      "Community identity",
     ],
   },
   {
-    quarter: "2027",
+    id: "ai",
+    phase: "Phase 4",
+    name: "AI Narrative Infrastructure",
+    status: "Planned",
+    build: [
+      "AI Narrative Detection — emerging trends, ecosystem rotations, viral narratives",
+      "Auto-generated Narrative Wars",
+      "AI summaries",
+      "“What changed in this battle?”",
+    ],
+  },
+  {
+    id: "platform",
+    phase: "Phase 5",
+    name: "Platform Expansion",
     status: "Vision",
-    items: [
-      { title: "Social + copy trading", note: "follow credible flows" },
-      { title: "Multi-chain expansion", note: "meet traders where they custody" },
+    build: [
+      "API access & narrative data APIs",
+      "Embedded widgets for media & trading platforms",
+      "Institutional dashboards",
+      "AI-agent integrations",
+      "Narrative indexes",
     ],
   },
 ] as const;
+
+/** @deprecated Use `roadmapPhases`. */
+export const roadmapQuarters = roadmapPhases.map((p) => ({
+  quarter: p.phase,
+  status: p.status,
+  items: (p.features ?? p.build ?? []).map((line) => ({
+    title: line,
+    note: p.goal ?? p.kpi ?? p.subtitle ?? "",
+  })),
+}));
 
 export const faqItems = [
   {
@@ -215,11 +277,11 @@ export const communityFeatures = [
   { verb: "Earn on resolution", detail: "Winning positions settle in stablecoin terms." },
 ] as const;
 export const securityItems = trustPillars.map((p) => ({ title: p.title, body: p.body }));
-export const futureRoadmap = roadmapQuarters.flatMap((q) =>
-  q.items.map((i) => ({
-    title: i.title,
-    body: i.note,
-    phase: (q.status === "Next" ? "Next" : "Later") as "Next" | "Later",
+export const futureRoadmap = roadmapPhases.flatMap((p) =>
+  (p.features ?? p.build ?? []).map((line) => ({
+    title: line,
+    body: p.goal ?? p.kpi ?? p.subtitle ?? "",
+    phase: (p.status === "Next" ? "Next" : "Later") as "Next" | "Later",
   })),
 );
 export const earlyAccessBullets = [
