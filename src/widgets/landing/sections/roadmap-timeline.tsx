@@ -218,7 +218,7 @@ function PhaseCard({
 
         {phase.goal ? (
           <p className={cn(landingBody, "mt-3 max-w-prose text-[13px] text-slate-300/95 sm:mt-4")}>
-            <span className="font-medium text-foreground">Goal — </span>
+            <span className="font-medium text-foreground">Goal: </span>
             {phase.goal}
           </p>
         ) : null}
@@ -261,7 +261,7 @@ function PhaseCard({
           >
             <Target className="mt-0.5 size-4 shrink-0 text-emerald-300/90" aria-hidden />
             <p className={cn(landingBody, "text-[13px] text-emerald-100/90")}>
-              <span className="font-semibold text-emerald-200/95">KPI — </span>
+              <span className="font-semibold text-emerald-200/95">KPI: </span>
               {phase.kpi}
             </p>
           </motion.div>
@@ -339,7 +339,7 @@ export function RoadmapTimeline() {
         <p className={cn(landingSectionLabel, "text-amber-200/85")}>Roadmap</p>
         <h2 className={landingH2}>Five phases. One narrative arc.</h2>
         <p className={landingLead}>
-          From validating Narrative Wars to AI-native infrastructure — each phase unlocks the next layer of
+          From validating Narrative Wars to AI-native infrastructure, each phase unlocks the next layer of
           attention, conviction, and platform scale.
         </p>
 
@@ -372,7 +372,7 @@ export function RoadmapTimeline() {
 
           {isMobile ? (
             <p className="mt-4 text-center text-[11px] text-muted-foreground/80">
-              Tap a phase or scroll — the track follows where you are.
+              Tap a phase or scroll. The track follows where you are.
             </p>
           ) : null}
         </div>

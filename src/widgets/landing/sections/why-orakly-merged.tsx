@@ -48,10 +48,10 @@ export function WhyOraklyMerged() {
       <LandingReveal className={landingBandInner}>
         <p className={landingSectionLabel}>Why Orakly</p>
         <h2 className={landingH2}>
-          Built for <span className="text-violet-200/95">crypto-native questions</span> — not generic catalogs
+          Built for <span className="text-violet-200/95">crypto-native questions</span>, not generic catalogs
         </h2>
         <p className={landingLead}>
-          Binary markets you already understand — listings, flow, and settlement tuned for traders who move fast.
+          Binary markets you already understand: listings, flow, and settlement tuned for traders who move fast.
         </p>
 
         <div className="mt-8 grid min-h-[320px] overflow-hidden rounded-2xl ring-1 ring-violet-500/15 md:min-h-[380px] md:grid-cols-2">
@@ -140,11 +140,11 @@ function OraklyPanel() {
         {whyOraklyFeatures.map((row) => (
           <li key={row.title} className="text-sm leading-relaxed text-muted-foreground">
             <span className="font-medium text-foreground">{row.title}</span>
-            <span> — {row.detail}</span>
+            <span>: {row.detail}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-5 text-sm font-semibold text-yes">Move with the market — not after the recap.</p>
+      <p className="mt-5 text-sm font-semibold text-yes">Move with the market, not after the recap.</p>
     </div>
   );
 }

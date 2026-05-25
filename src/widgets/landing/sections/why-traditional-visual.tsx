@@ -38,7 +38,7 @@ export function WhyTraditionalVisual() {
       <motion.div className="relative z-[1] flex flex-1 flex-col p-5 md:p-6">
         <p className={landingEyebrow}>Traditional platforms</p>
         <p className="mt-2 max-w-[18rem] text-sm leading-relaxed text-muted-foreground">
-          Static catalogs built for occasional bets — not intraday rotation.
+          Static catalogs built for occasional bets, not intraday rotation.
         </p>
 
         <motion.div

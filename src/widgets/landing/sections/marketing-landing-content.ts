@@ -35,7 +35,7 @@ export const whyOraklyFeatures = [
   },
   {
     title: "Sentiment in the tape",
-    detail: "Odds update as participants trade — not after a manual refresh.",
+    detail: "Odds update as participants trade, not after a manual refresh.",
   },
   {
     title: "Probability discovery",
@@ -59,7 +59,7 @@ export const whyOraklyBridgeColumns = [
   {
     title: "What the platform optimizes for",
     lines: [
-      "Context per market — why it exists, what resolves it.",
+      "Context per market: why it exists, what resolves it.",
       "Stablecoin flow for crypto-native participants.",
       "Infrastructure aimed at verifiable outcomes.",
     ],
@@ -91,7 +91,7 @@ export const oraklyFramework = [
   },
   {
     k: "Execution clarity",
-    d: "Short trade flow on purpose — less hesitation at entry.",
+    d: "Short trade flow on purpose, with less hesitation at entry.",
   },
   {
     k: "Transparent resolution",
@@ -179,7 +179,7 @@ export const roadmapPhases: readonly RoadmapPhase[] = [
       "Trending sectors",
       "Narrative flow",
       "Narrative Velocity & momentum scoring",
-      "Better analytics — battle insights & attention charts",
+      "Better analytics, battle insights, and attention charts",
       "Mobile optimization",
     ],
   },
@@ -205,7 +205,7 @@ export const roadmapPhases: readonly RoadmapPhase[] = [
     name: "AI Narrative Infrastructure",
     status: "Planned",
     build: [
-      "AI Narrative Detection — emerging trends, ecosystem rotations, viral narratives",
+      "AI Narrative Detection: emerging trends, ecosystem rotations, viral narratives",
       "Auto-generated Narrative Wars",
       "AI summaries",
       "“What changed in this battle?”",
@@ -259,7 +259,7 @@ export const faqItems = [
   },
   {
     q: "How does the email list work?",
-    a: "Leave your email below to receive product and roadmap updates. We use the address only for that purpose — no spam, no resale.",
+    a: "Leave your email below to receive product and roadmap updates. We use the address only for that purpose. No spam, no resale.",
   },
 ] as const;
 
