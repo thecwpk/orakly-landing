@@ -214,7 +214,7 @@ export const howSteps = [
   {
     n: 1,
     title: "Discover",
-    body: "Browse live markets across crypto, macro, sports, tech, and more.",
+    body: "Browse markets across crypto, macro, sports, tech, and more.",
     tag: "Browse",
   },
   {

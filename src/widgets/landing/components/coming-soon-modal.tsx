@@ -107,7 +107,7 @@ export function ComingSoonProvider({ children }: { children: ReactNode }) {
                     </>
                   ) : (
                     <>
-                      We&apos;re finishing the on-chain trading experience: wallet connect, live markets, and
+                      We&apos;re finishing the on-chain trading experience: wallet connect, markets, and
                       settlement. Stay on the list for the launch note.
                     </>
                   )}

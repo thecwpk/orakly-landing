@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## What’s included
 
-- Hero, live markets grid, how it works, why Orakly, trust, roadmap, waitlist, footer
+- Hero, markets grid, how it works, why Orakly, trust, roadmap, waitlist, footer
 - Navbar: Twitter, Dextool, Launch app (coming soon toast)
 - Same styling and behavior as the main app landing at `/`
 

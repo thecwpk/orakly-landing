@@ -5,7 +5,24 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-import { landingShell } from "./marketing-landing-rail";
+import { landingSectionGrid, landingShell } from "./marketing-landing-rail";
+
+/** Grid + indigo hairlines — shared section atmosphere (How it works, hero, Narrative Wars). */
+export function LandingSectionAtmosphere() {
+  return (
+    <>
+      <div className={landingSectionGrid} aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        aria-hidden
+      />
+    </>
+  );
+}
 
 type LandingShellProps = {
   children: ReactNode;

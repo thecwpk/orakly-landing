@@ -2,7 +2,7 @@
 export const LANDING_NAV_SECTIONS = [
   { label: "Overview", href: "#markets" },
   { label: "Narrative Wars", href: "#narrative-wars" },
-  { label: "Live markets", href: "#live-markets" },
+  { label: "Market", href: "#live-markets" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Why Orakly", href: "#why" },
   { label: "Roadmap", href: "#roadmap" },

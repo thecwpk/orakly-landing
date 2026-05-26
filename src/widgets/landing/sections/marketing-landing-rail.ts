@@ -32,7 +32,7 @@ export const landingRailSection = landingBandInner;
 export const landingEyebrow =
   "font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground";
 
-/** Section band label — above each major H2 (Live markets, How it works, …). */
+/** Section band label — above each major H2 (Markets, How it works, …). */
 export const landingSectionLabel =
   "font-mono text-xs font-bold uppercase tracking-[0.22em] text-slate-300/90 sm:text-[0.8125rem] sm:tracking-[0.24em]";
 
@@ -56,6 +56,26 @@ export const landingLead =
 
 /** Body copy inside cards. */
 export const landingBody = "text-sm leading-relaxed text-muted-foreground";
+
+/** Section canvas — matches How it works band. */
+export const landingSectionGradient =
+  "bg-[linear-gradient(185deg,oklch(0.14_0.02_255)_0%,hsl(var(--background))_38%,oklch(0.13_0.018_250)_100%)]";
+
+/** Hero band — slightly brighter top lift, same family as `landingSectionGradient`. */
+export const landingHeroGradient =
+  "bg-[linear-gradient(185deg,oklch(0.15_0.025_255)_0%,hsl(var(--background))_45%,oklch(0.13_0.018_250)_100%)]";
+
+/** Fine grid overlay shared across premium sections. */
+export const landingSectionGrid =
+  "pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px]";
+
+/** Glass step card — pairs with `.hw-step` keyframe shimmer. */
+export const landingGlassCard =
+  "hw-step rounded-2xl border border-white/[0.1] bg-white/[0.035] shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl transition hover:border-indigo-400/30 hover:bg-white/[0.055]";
+
+/** Mono tag inside glass cards (How it works steps, battles, etc.). */
+export const landingCardTag =
+  "font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground";
 
 /* ---------- DEPRECATED ALIASES ---------- */
 export const landingH1 = landingDisplay;

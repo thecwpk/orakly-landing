@@ -13,8 +13,12 @@
 import type { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement> & {
-  /** YES probability the curve should terminate at (0-100). */
+  /** Strength / probability the curve should terminate at (0-100). */
   endPct: number;
+  /** Unique id for gradient fill when multiple sparklines share a page. */
+  gradientId?: string;
+  /** Stroke and gradient top color. */
+  stroke?: string;
 };
 
 const POINTS: ReadonlyArray<readonly [number, number]> = [
@@ -23,7 +27,13 @@ const POINTS: ReadonlyArray<readonly [number, number]> = [
   [96, 60], [100, 64],
 ];
 
-export function StaticMarketSparkline({ endPct, className, ...rest }: Props) {
+export function StaticMarketSparkline({
+  endPct,
+  gradientId = "orakly-spark-fill",
+  stroke = "var(--yes)",
+  className,
+  ...rest
+}: Props) {
   const w = 200;
   const h = 80;
   const projected = POINTS.map(([x, y], i): [number, number] => {
@@ -47,13 +57,13 @@ export function StaticMarketSparkline({ endPct, className, ...rest }: Props) {
       {...rest}
     >
       <defs>
-        <linearGradient id="orakly-spark-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="var(--yes)" stopOpacity="0.42" />
-          <stop offset="100%" stopColor="var(--yes)" stopOpacity="0" />
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={stroke} stopOpacity="0.42" />
+          <stop offset="100%" stopColor={stroke} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <path d={areaPath} fill="url(#orakly-spark-fill)" />
-      <path d={linePath} fill="none" stroke="var(--yes)" strokeWidth="1.75" strokeLinejoin="round" strokeLinecap="round" />
+      <path d={areaPath} fill={`url(#${gradientId})`} />
+      <path d={linePath} fill="none" stroke={stroke} strokeWidth="1.75" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
   );
 }

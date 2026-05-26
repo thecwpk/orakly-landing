@@ -29,7 +29,7 @@ const COMMUNITY_LINKS = [
 
 const SITEMAP_LINKS = [
   { label: "Narrative Wars", href: "#narrative-wars" },
-  { label: "Live markets", href: "#live-markets" },
+  { label: "Market", href: "#live-markets" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Why Orakly", href: "#why" },
   { label: "Trust", href: "#trust" },

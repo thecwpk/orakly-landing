@@ -3,12 +3,16 @@
 import { cn } from "@/lib/utils";
 import { howSteps } from "@/widgets/landing/sections/marketing-landing-content";
 import { LandingReveal } from "@/widgets/landing/sections/marketing-landing-layout";
+import { LandingSectionAtmosphere } from "@/widgets/landing/sections/marketing-landing-layout";
 import {
   landingBandInner,
-  landingSectionLabel,
+  landingCardTag,
+  landingGlassCard,
   landingH2,
   landingLead,
   landingSectionBand,
+  landingSectionGradient,
+  landingSectionLabel,
 } from "@/widgets/landing/sections/marketing-landing-rail";
 
 /**
@@ -17,25 +21,8 @@ import {
  */
 export function HowItWorksAnimated() {
   return (
-    <section
-      id="how-it-works"
-      className={cn(
-        landingSectionBand,
-        "bg-[linear-gradient(185deg,oklch(0.14_0.02_255)_0%,hsl(var(--background))_38%,oklch(0.13_0.018_250)_100%)]",
-      )}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
-        aria-hidden
-      />
+    <section id="how-it-works" className={cn(landingSectionBand, landingSectionGradient)}>
+      <LandingSectionAtmosphere />
       <LandingReveal className={landingBandInner}>
         <p className={landingSectionLabel}>How it works</p>
         <h2 className={landingH2}>Three steps. No magic.</h2>
@@ -60,10 +47,8 @@ export function HowItWorksAnimated() {
 
 function StepCard({ step }: { step: (typeof howSteps)[number] }) {
   return (
-    <article className="hw-step rounded-2xl border border-white/[0.1] bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl transition hover:border-indigo-400/30 hover:bg-white/[0.055]">
-      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-        {step.tag}
-      </p>
+    <article className={cn(landingGlassCard, "p-4")}>
+      <p className={landingCardTag}>{step.tag}</p>
       <h3 className="mt-1.5 text-sm font-semibold text-foreground">{step.title}</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
     </article>
