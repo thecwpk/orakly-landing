@@ -44,11 +44,11 @@ export const narrativeMarketShowcases = [
     slug: "btc-dominance-narrative",
     title: "BTC Dominance Narrative",
     category: "Dominance",
-    flow: "Capital rotating into BTC",
+    flow: "Capital rotating into BTC. Phase: Risk-off accumulation cycle.",
     phase: "Risk-off accumulation cycle",
     metrics: [
-      { label: "BTC strength", value: "72", signal: "fire", trend: "up" },
-      { label: "ETH strength", value: "61", signal: "bolt", trend: "down" },
+      { label: "BTC narrative strength", value: "72", signal: "fire", trend: "up" },
+      { label: "ETH narrative strength", value: "61", signal: "bolt", trend: "down" },
     ],
   },
   {
@@ -56,11 +56,11 @@ export const narrativeMarketShowcases = [
     slug: "ai-agent-supercycle",
     title: "AI Agent Supercycle Narrative",
     category: "Supercycle",
-    flow: "Attention shifting toward AI agents",
+    flow: "Attention shifting toward AI agents. Phase: Early supercycle expansion.",
     phase: "Early supercycle expansion",
     metrics: [
-      { label: "AI agents", value: "81", signal: "fire", trend: "up" },
-      { label: "Memecoins", value: "66", signal: "bolt", trend: "down" },
+      { label: "AI narrative strength", value: "81", signal: "fire", trend: "up" },
+      { label: "Memecoin narrative strength", value: "66", signal: "bolt", trend: "down" },
     ],
   },
   {
@@ -68,11 +68,11 @@ export const narrativeMarketShowcases = [
     slug: "memecoin-attention-cycle",
     title: "Memecoin Attention Cycle",
     category: "Memes",
-    flow: "Retail attention re-entering meme cycle",
+    flow: "Retail attention re-entering meme cycle. New meme entries rising. Phase: Early expansion phase.",
     phase: "Early expansion phase",
     metrics: [
       { label: "PEPE viral pressure", value: "88", signal: "fire", trend: "up" },
-      { label: "New meme velocity", value: "79", signal: "fire", trend: "up" },
+      { label: "DOGE stability", value: "64", signal: "bolt", trend: "flat" },
     ],
   },
   {
@@ -80,11 +80,11 @@ export const narrativeMarketShowcases = [
     slug: "ethereum-utility-narrative",
     title: "Ethereum Utility Narrative",
     category: "Infrastructure",
-    flow: "Transitioning into infrastructure narrative",
+    flow: "Transitioning into infrastructure narrative. Developer activity steady. Phase: Consolidation to maturity shift.",
     phase: "Consolidation to maturity shift",
     metrics: [
-      { label: "ETH utility", value: "64", signal: "bolt", trend: "flat" },
-      { label: "ETF flows", value: "76", signal: "fire", trend: "up" },
+      { label: "ETH narrative strength", value: "64", signal: "bolt", trend: "flat" },
+      { label: "ETF narrative influence", value: "76", signal: "fire", trend: "up" },
     ],
   },
   {
@@ -92,11 +92,11 @@ export const narrativeMarketShowcases = [
     slug: "solana-execution-narrative",
     title: "Solana Execution Narrative",
     category: "Execution",
-    flow: "Consumer + app-layer rotation into Solana",
+    flow: "Consumer and app-layer rotation into Solana. App engagement strong. Phase: Growth acceleration cycle.",
     phase: "Growth acceleration cycle",
     metrics: [
-      { label: "SOL execution", value: "77", signal: "fire", trend: "up" },
-      { label: "App layer", value: "82", signal: "fire", trend: "up" },
+      { label: "SOL narrative strength", value: "77", signal: "fire", trend: "up" },
+      { label: "Retail activity", value: "74", signal: "fire", trend: "up" },
     ],
   },
   {
@@ -104,10 +104,10 @@ export const narrativeMarketShowcases = [
     slug: "rwa-institutional-narrative",
     title: "RWA Institutional Narrative",
     category: "Institutional",
-    flow: "Capital entering real-world asset narrative",
+    flow: "Capital entering real-world asset narrative. Liquidity inflow slow but steady. Phase: Early institutional adoption phase.",
     phase: "Early institutional adoption phase",
     metrics: [
-      { label: "RWA adoption", value: "69", signal: "bolt", trend: "up" },
+      { label: "RWA narrative strength", value: "69", signal: "bolt", trend: "up" },
       { label: "Institutional flow", value: "71", signal: "fire", trend: "up" },
     ],
   },

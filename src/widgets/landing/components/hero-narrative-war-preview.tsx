@@ -11,12 +11,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const BTC_PCT = 68;
 const ETH_PCT = 41;
 const SPARK_END = 64;
-const CONVICTION_DELTA = "+12.4%";
 
 const STATS = [
-  { label: "Open interest", value: "$2.4M" },
-  { label: "Traders", value: "1.8k" },
-  { label: "Resolution", value: "72h" },
+  { label: "Participants", value: "18.4K" },
+  { label: "Momentum", value: "Rising" },
+  { label: "Narrative strength", value: "68%" },
 ] as const;
 
 const cardShell = cn(
@@ -122,7 +121,7 @@ export function HeroNarrativeWarPreview() {
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-indigo-300/85">
-          Narrative war
+          Narrative Wars
         </p>
         <LivePill reduceMotion={reduceMotion} />
       </div>
@@ -131,7 +130,7 @@ export function HeroNarrativeWarPreview() {
       <div className="mt-4 rounded-xl border border-white/[0.08] bg-white/[0.02] p-3">
         <div className="flex items-baseline justify-between gap-2">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-            Conviction curve
+            BTC vs ETH
           </span>
           <span className="font-display text-lg font-bold tabular-nums text-yes">{SPARK_END}%</span>
         </div>
@@ -143,7 +142,7 @@ export function HeroNarrativeWarPreview() {
       {/* BTC vs ETH */}
       <div className="mt-4">
         <p className="text-center text-xs font-medium text-muted-foreground sm:text-sm">
-          Which narrative leads this cycle?
+          Which narrative dominates this cycle?
         </p>
         <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
           <PctCard asset="BTC" pct={BTC_PCT} delay={0.1} played={played} reduceMotion={reduceMotion} />
@@ -162,10 +161,8 @@ export function HeroNarrativeWarPreview() {
         )}
       >
         <TrendingUp className="size-3.5 shrink-0 text-yes" aria-hidden />
-        <p className="text-xs leading-snug text-foreground/90 sm:text-sm">
-          <span className="font-medium">24h conviction</span>{" "}
-          <span className="font-display font-bold tabular-nums text-yes">{CONVICTION_DELTA}</span>{" "}
-          <span className="text-muted-foreground">attention</span>
+        <p className="text-xs font-medium leading-snug text-foreground/90 sm:text-sm">
+          Attention Surge
         </p>
       </div>
 

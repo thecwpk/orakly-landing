@@ -406,7 +406,7 @@ function LeftInsightsPanel({ reduceMotion }: { reduceMotion: boolean }) {
 
       <div className="relative pl-3">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-300/85">
-          Live narratives
+          Conviction signals
         </p>
         <p className="mt-2 font-display text-lg font-semibold leading-snug text-foreground sm:text-xl">
           Choose the story the market follows
@@ -415,10 +415,10 @@ function LeftInsightsPanel({ reduceMotion }: { reduceMotion: boolean }) {
 
       <div className="relative mt-8 border-t border-white/[0.08] pt-6 pl-3">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-300/75">
-          Conviction signals
+          Track
         </p>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          What shifts before price — attention, momentum, community belief, sentiment.
+          What shifts before price moves.
         </p>
 
         <ul className="mt-5 grid list-none grid-cols-1 gap-3 min-[480px]:grid-cols-2">

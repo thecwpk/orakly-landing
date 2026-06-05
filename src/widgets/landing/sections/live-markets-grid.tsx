@@ -43,10 +43,10 @@ export function LiveMarketsGrid() {
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-indigo-300/85">
               Markets
             </p>
-            <h2 className={landingH2}>Narrative strength. Live flow.</h2>
+            <h2 className={landingH2}>Strength scores. Live flow.</h2>
             <p className={landingLead}>
-              Six narrative markets tracking attention, momentum, and capital flow across crypto. Strength
-              scores update as conviction moves on Orakly.
+              Major crypto narratives measured with live strength scores and capital flow.
+              See where attention and conviction are moving before the broader market reacts.
             </p>
           </header>
 
